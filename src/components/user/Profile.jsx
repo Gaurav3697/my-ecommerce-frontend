@@ -1,13 +1,19 @@
 import React, { Fragment, useEffect } from 'react'
 import toast from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom'
-import { loadUser } from '../../actions/userAction';
+import { Link, useNavigate } from 'react-router-dom'
+import {logout } from '../../actions/userAction';
+import { Navigate } from 'react-router-dom';
 
 const Profile = () => {
     // When reloaded userData is deleated and isAuthenticated becomes false again so I will save the user data and other datas in localStorage but at last
     const dispatch = useDispatch();
     const {loading,user,isAuthenticated,error} = useSelector((state)=>state.user)
+    const navigate = useNavigate();
+    const logoutHandler = ()=>{
+        dispatch(logout());
+        toast.success("Logged Out Successfully");
+    }
 
     useEffect(()=>{
         if(error){
@@ -15,16 +21,17 @@ const Profile = () => {
             console.log(error.message);
         }
         if(!isAuthenticated){
-            console.log("Not Authenticated");
-            toast.error("Not Authenticated");
+            navigate('/login')
         }
-        dispatch(loadUser())
-        console.log(user);
     },[error,isAuthenticated])
 
     return (
-        <Fragment>
-            <div className='h-screen w-screen bg-white overflow-x-hidden border '>
+        // <Fragment>
+        //     { loading ? ("<h1>LOADING</h1>"):
+              <Fragment>
+                {user && user.name? (
+                    <Fragment>
+                        <div className='h-screen w-screen bg-white overflow-x-hidden border '>
                 <div className="container mx-auto my-24 p-5 ">
                     <div className="md:flex no-wrap md:-mx-2 border">
                         {/* <!-- Left Side --> */}
@@ -108,19 +115,33 @@ const Profile = () => {
                                         </div> */}
                                     </div>
                                 </div>
+                                <Link
+                                    className="flex items-center justify-center text-center w-44 m-auto text-gray-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4 ">
+                                    Change Profile Detail
+                                </Link>
+                                <Link
+                                to={'/user/updatePassword'}
+                                    className="flex items-center justify-center text-center w-44 m-auto text-gray-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
+                                    Change Password
+                                </Link>
                                 <button
-                                    className="block w-auto m-auto text-gray-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4 ">
-                                    Change Profile Detail</button>
-                                <button
-                                    className="block w-auto m-auto text-gray-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">
-                                    Change Password</button>
+                                    onClick={logoutHandler}
+                                    className="block w-32 m-auto text-white bg-red-400 text-lg font-semibold rounded-xl hover:bg-red-600 cursor-pointer hover:shadow-xs p-3 my-4">
+                                    Logout
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+                    </Fragment>
+                ):(
+                    <h1>Loading...</h1>
+                )}
 
-        </Fragment>
+              </Fragment>
+        //     }
+        // </Fragment>
     )
 }
 

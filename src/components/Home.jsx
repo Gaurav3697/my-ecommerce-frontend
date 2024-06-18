@@ -18,7 +18,6 @@ const Home = () => {
         }
         dispatch(getProduct());
     }, [dispatch, error]);
-    console.log(productList.products);
 
     return (
         <Fragment>
@@ -28,7 +27,7 @@ const Home = () => {
                 <div className='bigImage m-auto h-screen w-screen relative'>
                     <img src="/bigImg.png" alt="bigImage" className='h-full absolute w-11/12 left-12 rounded-xl' />
                     <div className='absolute text-white left-20 top-44 font-bold text-5xl'>READY TO EXPERIENCE NEW BEST <br />ONLINE SHOPPING SERVICES</div>
-                    <div className='absolute text-white left-20 top-72 text-xl'>WE CAN BE YOUR BEST PARTING IN BUYING BEST ELECTRONIC PRICE AT MINIMUM PRICE<br />SO CHOSE THE BEST WAY TO BUY</div>
+                    <div className='absolute text-white left-20 top-72 text-xl'>WE CAN BE YOUR BEST DESCISION FOR BUYING BEST ELECTRONIC PRODUCT AT MINIMUM PRICE<br />SO CHOSE THE BEST WAY TO BUY</div>
                     <button className='absolute top-96 left-24 px-10 py-4 bg-white border text-gyay-900 rounded-xl border-gray-900 hover:bg-gray-800 hover:text-white transition-colors duration-300 cursor-pointer'>SHOP NOW</button>
                 </div>
                 <div className='flex flex-row w-screen h-screen '>

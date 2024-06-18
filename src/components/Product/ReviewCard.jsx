@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ReviewCard = ({key,review}) => {
+const ReviewCard = ({review}) => {
     return (
         <>
         {/* use name,comment,user-profile-image and rating */}

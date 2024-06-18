@@ -32,13 +32,15 @@ export const login = (email, password) => async (dispatch) => {
     try {
         dispatch({ type: LOGIN_REQUEST });
 
-        const config = { headers: { "Content-Type": "application/json" } };
+        const config = { headers: { "Content-Type": "application/json" },
+        withCredentials: true }; //to set cookie 'withCredentials: true' is most important thing 
 
         const { data } = await axios.post(
             `${server}/login`,
             { email, password },
             config
         );
+        // console.log(data);
 
         dispatch({ type: LOGIN_SUCCESS, payload: data.user });
     } catch (error) {
@@ -51,7 +53,7 @@ export const register = (userData) =>async(dispatch)=>{
     try {
         dispatch({type:REGISTER_USER_REQUEST});
 
-        const config = {headers: { "Content-Type": "multipart/form-data" }};
+        const config = {headers: { "Content-Type": "multipart/form-data" },withCredentials: true};
 
         const {data} = await axios.post(`${server}/register`,userData,config);
 
@@ -66,8 +68,10 @@ export const loadUser = () => async (dispatch) => {
     try {
         dispatch({ type: LOAD_USER_REQUEST });
 
-        const { data } = await axios.get(`${server}/me`);
-
+        const { data } = await axios.get(`${server}/me`,
+            {withCredentials: true} // This ensures cookies are sent
+        );
+        console.log(data);
         dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
     } catch (error) {
         dispatch({ type: LOAD_USER_FAIL, payload: error.response.data.message });
@@ -77,7 +81,7 @@ export const loadUser = () => async (dispatch) => {
 //logout 
 export const logout = () => async (dispatch) => {
     try {
-        await axios.get(`${server}/logout`);
+        await axios.get(`${server}/logout`,{withCredentials: true}) // This ensures cookies are sent);
 
         dispatch({ type: LOGOUT_SUCCESS }); 
     } catch (error) {
@@ -105,26 +109,40 @@ export const updatePassword = (passwords) => async (dispatch) => {
     try {
         dispatch({ type: UPDATE_PASSWORD_REQUEST });
 
-        const config = { headers: { "Content-Type": "application/json" } };
+        const config = { headers: { "Content-Type": "application/json" },withCredentials: true};
 
-        const { data } = await axios.put(`${server}/password/update`, passwords, config);
+        const { data } = await axios.put(`${server}/updatePassword`, passwords, config);  //http://localhost:4000/api/v1/updatePassword
 
         dispatch({ type: UPDATE_PASSWORD_SUCCESS, payload: data.success });
     } catch (error) {
         dispatch({ type: UPDATE_PASSWORD_FAIL, payload: error.response.data.message });
     }
 }
+
 //forgot password action
-export const forgotPassword = (email) => async (dispatch) => {
+export const forgotPassword = ({email}) => async (dispatch) => {
     try {
         dispatch({ type: FORGOT_PASSWORD_REQUEST });
 
         const config = { headers: { "Content-Type": "application/json" } };
 
-        const { data } = await axios.post(`${server}/password/forgot`, email, config);
+        const { data } = await axios.post(`${server}/password/forgot`, {email}, config);
 
         dispatch({ type: FORGOT_PASSWORD_SUCCESS, payload: data.message });
     } catch (error) {
         dispatch({ type: FORGOT_PASSWORD_FAIL, payload: error.response.data.message });
+    }
+}
+export const resetPassword = (token, passwords) => async (dispatch) => {
+    try {
+        dispatch({ type: RESET_PASSWORD_REQUEST });
+
+        const config = { headers: { "Content-Type": "application/json" } };
+
+        const { data } = await axios.put(`${server}/password/reset/${token}`, passwords, config);
+
+        dispatch({ type: RESET_PASSWORD_SUCCESS, payload: data.success });
+    } catch (error) {
+        dispatch({ type: RESET_PASSWORD_FAIL, payload: error.response.data.message });
     }
 }

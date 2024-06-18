@@ -4,9 +4,10 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { useSelector } from 'react-redux';
 
 const Header = () => { 
-
+    const {cartItems} = useSelector((state)=>state.cart);
     //when user is logged out redirect him directly to login page
     return (
         <Fragment>
@@ -24,7 +25,7 @@ const Header = () => {
                         <Link to={'/Contact'} className='font-semibold text-xl hover:text-gray-900 hover:cursor-pointer transition-colors duration-300'>Contact</Link>
                     </nav>
                     <div className='m-auto flex items-center justify-end space-x-10'>
-                        <Link to={'/cart'} className='hover:text-gray-900 text-xl hover:cursor-pointer transition-colors duration-300'><ShoppingCartOutlinedIcon /> <span className='text-sm -tracking-tighter'>Cart(2)</span> </Link>
+                        <Link to={'/cart'} className='hover:text-gray-900 text-xl hover:cursor-pointer transition-colors duration-300'><ShoppingCartOutlinedIcon /> <span className='text-sm -tracking-tighter'>cart({cartItems.length})</span> </Link>
                         <Link to={'/login'} className='hover:text-gray-900 text-xl hover:cursor-pointer transition-colors duration-300'><AccountCircleOutlinedIcon /></Link>
                         <span className='hover:text-gray-900 text-xl hover:cursor-pointer transition-colors duration-300'><SearchOutlinedIcon /></span>
                     </div>

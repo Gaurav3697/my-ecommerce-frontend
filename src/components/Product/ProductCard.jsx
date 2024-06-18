@@ -50,9 +50,12 @@ export default function ProductCard({_id,product}) {
         </Typography>
       </CardContent>
       <CardOverflow>
-        <Button variant="solid" color="success" size="lg">
-          Add to cart
-        </Button>
+      <Link 
+          to={`/productDetail/${product._id}`}
+          className="block w-full m-auto text-white bg-indigo-700 text-lg font-semibold rounded-xl hover:bg-indigo-600 cursor-pointer hover:shadow-xs p-3 my-4"
+        >
+          ADD TO CART
+        </Link>
       </CardOverflow>
     </Card>
   );

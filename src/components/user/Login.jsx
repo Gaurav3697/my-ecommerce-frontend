@@ -25,9 +25,8 @@ const Login = () => {
       if(isAuthenticated){
         toast.success("Login Successfully");
         navigate("/user/me");
-      }
-      console.log(isAuthenticated);
-      console.log(user);
+        }
+    console.log('isAuthenticated:',isAuthenticated);
     }, [error,isAuthenticated])
     
 

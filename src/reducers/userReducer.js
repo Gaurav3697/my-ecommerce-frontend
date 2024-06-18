@@ -19,82 +19,84 @@ import {
     FORGOT_PASSWORD_REQUEST,
     FORGOT_PASSWORD_SUCCESS,
     FORGOT_PASSWORD_FAIL,
+    FORGOT_PASSWORD_RESET,
     RESET_PASSWORD_REQUEST,
     RESET_PASSWORD_SUCCESS,
     RESET_PASSWORD_FAIL,
     CLEAR_ERRORS,
+    UPDATE_PROFILE_RESET,
+    UPDATE_PASSWORD_RESET,
 } from "../constants/userConstants";
 
-//login and register reducer
+//login and register reducer --> You cannot make mor than one reducer just to update user
 export const userReducer = (state = { user: [] }, action) => {
     switch (action.type) {
         case LOGIN_REQUEST:
         case REGISTER_USER_REQUEST:
+        case LOAD_USER_REQUEST:
             return { loading: true, isAuthenticated: false }
         case LOGIN_SUCCESS:
         case REGISTER_USER_SUCCESS:
-
+        case LOAD_USER_SUCCESS:
             return { loading: false, isAuthenticated: true, user: action.payload }
         case LOGIN_FAIL:
         case REGISTER_USER_FAIL:
-            return { loading: false, error: action.payload }
-        default:
-            return state
-    }
-}
-
-// load user reducer
-export const loadUserReducer = (state = { user: [] }, action) => {
-    switch (action.type) {
-        case LOAD_USER_REQUEST:
-            return { loading: true, ...state}
-        case LOAD_USER_SUCCESS:
-            return { loading: false, isAuthenticated: true, user: action.payload }
-        case LOAD_USER_FAIL:
-            return { loading: false, isAuthenticated: false, error: action.payload }
-        default:
-            return state
-    }
-}
-
-//logout reducer
-export const logoutReducer = (state = { user: [] }, action) => {
-    switch (action.type) {
-        case LOGOUT_SUCCESS:
-            return { loading: false, isAuthenticated: false, user: null }
         case LOGOUT_FAIL:
             return { loading: false, error: action.payload }
+        case LOAD_USER_FAIL:
+            return { loading: false, isAuthenticated: false, error: action.payload }
+        case LOGOUT_SUCCESS:
+            return { loading: false, isAuthenticated: false, user: null }
         default:
             return state
     }
 }
 
+//profileReducer
+
 //update profile and password reducer
-export const updateReducer = (state = { user: [] }, action) => {
+export const profileReducer = (state = {}, action) => {
     switch (action.type) {
         case UPDATE_PASSWORD_REQUEST:
         case UPDATE_PROFILE_REQUEST:
-            return { loading: true, ...state  }
+            return { loading: true, ...state, isUpdated: false }
         case UPDATE_PASSWORD_SUCCESS:
         case UPDATE_PROFILE_SUCCESS:
-            return { loading: false, user: action.payload }
+            return { loading: false, isUpdated: action.payload }
         case UPDATE_PASSWORD_FAIL:
         case UPDATE_PROFILE_FAIL:
-            return { loading: false, error: action.payload }
+            return { loading: false, error: action.payload, isUpdated: false }
+        case UPDATE_PROFILE_RESET:
+        case UPDATE_PASSWORD_RESET:
+            return {
+                ...state,
+                isUpdated: false,
+            };
+
         default:
             return state
     }
 }
 
 //forgot password reducer
-export const forgotPasswordReducer = (state = { user: [] }, action) => {
+export const forgotPasswordReducer = (state = {}, action) => {
     switch (action.type) {
         case FORGOT_PASSWORD_REQUEST:
+        case RESET_PASSWORD_REQUEST:
             return { loading: true, ...state }
         case FORGOT_PASSWORD_SUCCESS:
             return { loading: false, message: action.payload } //this will give message that email is sent to your gmail account
+        case RESET_PASSWORD_SUCCESS:
+            return { loading: false, success: action.payload }
         case FORGOT_PASSWORD_FAIL:
+        case RESET_PASSWORD_FAIL:
+
             return { loading: false, error: action.payload }
+        case UPDATE_PASSWORD_RESET:
+            return {
+                ...state,
+                message: null,
+            };
         default:
             return state
     }

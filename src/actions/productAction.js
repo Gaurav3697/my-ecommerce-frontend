@@ -15,10 +15,10 @@ export const getProduct = (keyword="" , currentPage=1, price=[0,25000], category
     async(dispatch) =>{
         try {
             dispatch({type: PRODUCT_LIST_REQUEST});
-            // let link = `{server}/api/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&rating[gte]=${rating}`;
-            // if(category){
-            //     link = `{server}/api/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&rating[gte]=${rating}`;
-            // }
+            // const link = `{server}/api/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&rating[gte]=${rating}`;
+            if(category){
+                link = `{server}/api/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&rating[gte]=${rating}`;
+            }
             let link = `${server}/product`
             const {data} = await axios.get(link);
             dispatch({
