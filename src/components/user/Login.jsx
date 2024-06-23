@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { toast } from "react-hot-toast";
-import { login } from '../../actions/userAction';
+import { clearErrors,login } from '../../actions/userAction';
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
     const dispatch = useDispatch();
-    const {loading,isAuthenticated,error,user} = useSelector((state)=>state.user)
+    const {loading,isAuthenticated,error} = useSelector((state)=>state.user)
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
@@ -21,13 +21,14 @@ const Login = () => {
       if(error){
         toast.error(error);
         console.log(error);
+        dispatch(clearErrors());
       }
       if(isAuthenticated){
         toast.success("Login Successfully");
         navigate("/user/me");
         }
     console.log('isAuthenticated:',isAuthenticated);
-    }, [error,isAuthenticated])
+    }, [error,isAuthenticated,dispatch,navigate])
     
 
     return (

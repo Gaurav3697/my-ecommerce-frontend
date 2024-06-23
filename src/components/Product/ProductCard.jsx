@@ -1,6 +1,5 @@
 import * as React from 'react';
 import AspectRatio from '@mui/joy/AspectRatio';
-import Button from '@mui/joy/Button';
 import Card from '@mui/joy/Card';
 import CardContent from '@mui/joy/CardContent';
 import CardOverflow from '@mui/joy/CardOverflow';
@@ -24,10 +23,10 @@ export default function ProductCard({_id,product}) {
         </AspectRatio>
       </CardOverflow>
       <CardContent>
-        <Typography level="h3">{product.category}</Typography>
+        <Typography level="title-sm">{product.category}</Typography>
         <Link 
           to={`/productDetail/${product._id}`}
-          fontWeight="md"
+          className='text-2xl font-bold'
           color="neutral"
           textcolor="text.primary"
         >
@@ -45,9 +44,14 @@ export default function ProductCard({_id,product}) {
         >
           रु {product.price}
         </Typography>
-        <Typography level="body-sm">
+        <Typography level="body-md">
           (Only <b>{product.stock}</b> left in stock!)
         </Typography>
+
+        <Typography level="body-sm">
+          {`Rating: ${product.rating} stars (${product.reviews.length} Reviews)`}
+        </Typography>
+
       </CardContent>
       <CardOverflow>
       <Link 

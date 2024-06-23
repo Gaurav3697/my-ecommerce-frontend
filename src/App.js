@@ -10,10 +10,9 @@ import ForgetPassword from './components/user/ForgetPassword';
 import UpdatePassword from './components/user/UpdatePassword';
 import Profile from './components/user/Profile';
 import { Toaster } from 'react-hot-toast';
-import {useSelector } from 'react-redux';
-import {store} from "./store";
+import {useDispatch, useSelector } from 'react-redux';
 import ProtectedRoute from './components/Route/ProtectedRoute';
-import { loadUser } from './actions/userAction';
+import {loadUser } from './actions/userAction';
 import ResetPassword from './components/user/ResetPassword';
 import Cart from './components/cart/Cart';
 import Shipping from './components/cart/Shipping';
@@ -22,10 +21,12 @@ import axios from "axios";
 import {server} from "./index";
 import Payment from './components/cart/Payment';
 import Product from './components/Product/Product';
+import TestComponents from './components/TestComponents';
 
 export default function App() {
+  const dispatch = useDispatch();
   const {isAuthenticated} = useSelector(state=>state.user);
-  const [stripeApiKey,setStripeApikey]= useState("");
+  const [setStripeApikey]= useState("");
 
   const getStripeApiKey = async()=>{
     const {data} = await axios.get(`${server}/stripeApiKey`, {withCredentials: true});
@@ -33,18 +34,22 @@ export default function App() {
   }
 
   useEffect(()=>{
-    store.dispatch(loadUser());
-    console.log('isAuthenticated:',isAuthenticated); //removable
+    if(isAuthenticated){
+      dispatch(loadUser());
+    // console.log('isAuthenticated:',isAuthenticated); //removable
     getStripeApiKey(); 
-    console.log('stripeApiKey:', stripeApiKey);
-  },[])
+    // console.log('stripeApiKey:', stripeApiKey);
+    }
+  },[dispatch,isAuthenticated])
 
   return (
     <Router>
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* <Route path="/products" element={<Product/>} /> */}
+        <Route path="/test" element={<TestComponents />} />
+        <Route path="/product" element={<Product/>} />
+        <Route path="/product/:keyword" element={<Product/>} />
         <Route path="/productDetail/:id" element={<ProductDetail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />

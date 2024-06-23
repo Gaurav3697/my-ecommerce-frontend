@@ -29,7 +29,7 @@ const ResetPassword = () => {
       toast.success(success);
       navigate('/login');
     }
-  }, [error,toast,success])
+  }, [error,navigate,success])
   
   return (
     <>

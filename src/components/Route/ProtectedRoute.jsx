@@ -1,6 +1,6 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Navigate, Route, useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 
 // const ProtectedRoute = ({ isAdmin, element: element, ...rest }) => {
 //   const { loading, isAuthenticated, user } = useSelector((state) => state.user);
@@ -28,7 +28,7 @@ import { Navigate, Route, useNavigate } from 'react-router-dom';
 // };
 
 const ProtectedRoute = (props) => {
-  const { loading, isAuthenticated, user } = useSelector((state) => state.user);
+  const { loading, isAuthenticated} = useSelector((state) => state.user);
   const navigate = useNavigate();
   const {Component} = props;
   useEffect(() => {

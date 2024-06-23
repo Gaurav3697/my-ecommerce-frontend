@@ -11,11 +11,7 @@ const Cart = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { cartItems } = useSelector(state => state.cart);
-
-    const subtotal = (cartItems) => {
-        cartItems.map(Item => Item.price * Item.quantity)
-    }
-
+    
     const deleteHandler = (id) => {
         dispatch(removeItemsFromCart(id));
         toast.success("Item Removed from Cart");

@@ -23,9 +23,9 @@ import {
     RESET_PASSWORD_REQUEST,
     RESET_PASSWORD_SUCCESS,
     RESET_PASSWORD_FAIL,
-    CLEAR_ERRORS,
     UPDATE_PROFILE_RESET,
     UPDATE_PASSWORD_RESET,
+    CLEAR_ERRORS,
 } from "../constants/userConstants";
 
 //login and register reducer --> You cannot make mor than one reducer just to update user
@@ -47,6 +47,11 @@ export const userReducer = (state = { user: [] }, action) => {
             return { loading: false, isAuthenticated: false, error: action.payload }
         case LOGOUT_SUCCESS:
             return { loading: false, isAuthenticated: false, user: null }
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null,
+            };
         default:
             return state
     }
@@ -72,6 +77,11 @@ export const profileReducer = (state = {}, action) => {
                 ...state,
                 isUpdated: false,
             };
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null,
+            };
 
         default:
             return state
@@ -96,6 +106,11 @@ export const forgotPasswordReducer = (state = {}, action) => {
             return {
                 ...state,
                 message: null,
+            };
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null,
             };
         default:
             return state

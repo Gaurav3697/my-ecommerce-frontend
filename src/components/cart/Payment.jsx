@@ -1,5 +1,5 @@
 //understand payment integration in now world and make it
-import { CardCvcElement, CardElement, CardExpiryElement, CardNumberElement } from '@stripe/react-stripe-js';
+import { CardCvcElement, CardExpiryElement, CardNumberElement } from '@stripe/react-stripe-js';
 import { useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { Fragment, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -87,10 +87,7 @@ const Payment = () => {
 
                     dispatch(createOrder(order)); //need to make it
                     navigate("/success");
-
-                    {
-                        toast.error("There's some issue while processing payment");
-                    }
+                    toast.error("There's some issue while processing payment");
                 }
             }
         } catch (error) {

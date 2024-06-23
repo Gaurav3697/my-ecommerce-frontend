@@ -3,7 +3,6 @@ import toast from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom'
 import {logout } from '../../actions/userAction';
-import { Navigate } from 'react-router-dom';
 
 const Profile = () => {
     // When reloaded userData is deleated and isAuthenticated becomes false again so I will save the user data and other datas in localStorage but at last
@@ -23,11 +22,11 @@ const Profile = () => {
         if(!isAuthenticated){
             navigate('/login')
         }
-    },[error,isAuthenticated])
+    },[error,isAuthenticated,navigate])
 
     return (
-        // <Fragment>
-        //     { loading ? ("<h1>LOADING</h1>"):
+        <Fragment>
+            { loading ? (<div className='text-4xl h-screen w-screen flex justify-center mt-60'>Loading...</div>):
               <Fragment>
                 {user && user.name? (
                     <Fragment>
@@ -140,8 +139,8 @@ const Profile = () => {
                 )}
 
               </Fragment>
-        //     }
-        // </Fragment>
+            }
+        </Fragment>
     )
 }
 

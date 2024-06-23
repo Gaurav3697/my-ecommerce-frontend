@@ -34,7 +34,6 @@ const UpdatePassword = () => {
       if(isUpdated){
         toast.success("password Changed successfully");
         navigate('/user/me');
-        console.log(isUpdated)
         dispatch({
             type: UPDATE_PASSWORD_RESET,
           });
@@ -44,7 +43,10 @@ const UpdatePassword = () => {
 
     return (
         <>
-        <div className='h-screen w-screen bg-white'>
+        {
+            loading ? (<div className='text-4xl h-screen w-screen flex justify-center mt-60'>Loading...</div>) :
+            <>
+            <div className='h-screen w-screen bg-white'>
             <div className='flex flex-col m-auto relative top-32 w-1/2 border border-gray-400 rounded-2xl gap-4 ' >
                 <span className="m-5 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Change Password</span>
                 <form className="space-y-6" onSubmit={submitFormHandler}>
@@ -80,6 +82,8 @@ const UpdatePassword = () => {
                 </form>
             </div>
             </div>
+            </>
+        }
         </>
     )
 }

@@ -1,17 +1,44 @@
+//There is a bug in create review i.e when you create review once,you cannot update it
+//My review is not creating although everything in frontend is working well
+
 import React, { Fragment, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getProductDetail } from '../../actions/productAction';
+import { getProductDetail, newReview } from '../../actions/productAction';
 import ReviewCard from './ReviewCard';
 import { addItemsToCart } from '../../actions/cartAction';
 import toast from 'react-hot-toast';
+import { NEW_REVIEW_RESET } from '../../constants/productConstants';
+import {
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogTitle,
+    Button,
+} from "@mui/material";
+import Rating from '@mui/material/Rating';
 
 const ProductDetail = () => {
     const dispatch = useDispatch();
-    const { loading, error, productDetails} = useSelector((state) => state.productDetails);
+    const { loading, error, productDetails } = useSelector((state) => state.productDetails);
+
+    const { success, error: reviewError } = useSelector(
+        (state) => state.newReview
+    );
     // const { cartItems } = useSelector((state) => state.cart); I want to set default default stae of quantity as set in cart
     const { id } = useParams();
-    const [quantity,setQuantity] = useState(1);
+    const [quantity, setQuantity] = useState(1);
+    const [open, setOpen] = useState(false);
+    const [rating, setRating] = useState(0);
+    const [comment, setComment] = useState("");
+
+    //rating Options
+    // const options = {
+    //     size: "large",
+    //     value: productDetails.product.rating,
+    //     readOnly: true,
+    //     precision: 0.5,
+    //   };
 
     //increase quantity of item in cart function
     const increaseQuantity = () => {
@@ -34,12 +61,32 @@ const ProductDetail = () => {
         toast.success("Item Added To Cart");
     };
 
+    const submitReviewToggle = () => {
+        open ? setOpen(false) : setOpen(true);
+    };
+
+    //Create Review Handler
+    const reviewSubmitHandler = () => {
+        const myForm = new FormData();
+        myForm.set("rating", rating);
+        myForm.set("comment", comment);
+        dispatch(newReview(myForm, id));
+        setOpen(false);
+    }
+
     useEffect(() => {
         if (error) {
             console.log(error);
         }
+        if (reviewError) {
+            toast.error(reviewError); //see if it may cause any error
+        }
         dispatch(getProductDetail(id));
-    }, [dispatch, error, id, loading]);
+        if (success) {
+            toast.success("Review Submitted Successfully")
+            dispatch({ type: NEW_REVIEW_RESET });
+        }
+    }, [dispatch, error, id, loading,success,reviewError]);
 
     return (
         <Fragment>
@@ -66,9 +113,62 @@ const ProductDetail = () => {
                                     </button>
                                 </div>
                             </div>
-                            <div className="flex items-center mt-6">
-                                <button onClick={addToCartHandler} className="px-8 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">ADD TO CART</button>
+
+                            {/* gives stock imforamtion */}
+                            <p className='m-4'>
+                                Status:
+                                <b className={productDetails.product.stock < 1 ? "text-red-800" : "text-green-800"}>
+                                    {productDetails.product.stock < 1 ? " OutOfStock" : " InStock"}
+                                </b>
+                            </p>
+
+                            {/* buttons for add to cart and create review */}
+
+                            <div className="flex gap-10">
+                                <div className="flex items-center mt-6">
+                                    <button onClick={addToCartHandler} className="px-8 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500">ADD TO CART</button>
+                                </div>
+                                <div className="flex items-center mt-6">
+                                    <button onClick={submitReviewToggle} className="px-8 py-2 hover:bg-gray-400 text-black text-sm font-medium rounded border transition-all">Create Review</button>
+                                </div>
                             </div>
+
+
+                          {/* When button will be clicked dialog will appear */}
+                          <Dialog
+                                aria-labelledby="simple-dialog-title"
+                                open={open}
+                                onClose={submitReviewToggle}
+                            >
+                                <DialogTitle>Submit Review</DialogTitle>
+                                <DialogContent className="flex flex-col gap-3">
+                                    <Rating
+                                        name="simple-controlled"
+                                        value={rating}
+                                        onChange={(event, newValue) => {
+                                            setRating(newValue);
+                                        }}
+                                    />
+
+                                    <textarea
+                                        className="border-gray-600 border-4 p-4"
+                                        cols="30"
+                                        rows="5"
+                                        value={comment}
+                                        onChange={(e) => setComment(e.target.value)}
+                                    ></textarea>
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button onClick={submitReviewToggle} color="secondary">
+                                        Cancel
+                                    </Button>
+                                    <Button onClick={reviewSubmitHandler} color="primary">
+                                        Submit
+                                    </Button>
+                                </DialogActions>
+                            </Dialog>
+
+
                             {/* showing rating from material ui and no of reviews in brracket */}
 
 
@@ -81,10 +181,10 @@ const ProductDetail = () => {
                             {/* show user reviews and above all reviews a button to create review after submitting review i will use react-hot-toast to show review submitted successfully*/}
                             {
                                 productDetails.product && productDetails.product.reviews ? (
-                                    productDetails.product.reviews && productDetails.product.reviews.map((review)=>(
-                                        <ReviewCard key={review._id} review={review}/>
+                                    productDetails.product.reviews && productDetails.product.reviews.map((review) => (
+                                        <ReviewCard key={review._id} review={review} />
                                     ))
-                                ):(
+                                ) : (
                                     <div>No reviews yet</div>
                                 )
                             }
