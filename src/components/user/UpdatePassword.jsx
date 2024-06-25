@@ -55,7 +55,7 @@ const UpdatePassword = () => {
                         <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">Old Password</label>
                     </div>
                     <div className="mt-2">
-                        <input id="oldPassword" name="OldPassword" type="password" autocomplete="current-password" required className="p-4  block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                        <input id="oldPassword" name="OldPassword" type="password" autoComplete="current-password" required className="p-4  block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                     </div>
                 </div>
 
@@ -64,7 +64,7 @@ const UpdatePassword = () => {
                         <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">New password</label>
                     </div>
                     <div className="mt-2">
-                        <input id="newPassword" name="newPassword" type="password" autocomplete="current-password" required className="p-4  block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                        <input id="newPassword" name="newPassword" type="password" autoComplete="current-password" required className="p-4  block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                     </div>
                 </div>
 
@@ -73,7 +73,7 @@ const UpdatePassword = () => {
                         <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">Confirm Password</label>
                     </div>
                     <div className="mt-2">
-                        <input id="confirmPassword" name="confirmPassword" type="password" autocomplete="current-password" required className="p-4  block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                        <input id="confirmPassword" name="confirmPassword" type="password" autoComplete="current-password" required className="p-4  block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                     </div>
                 </div>
                 <div className='flex justify-center items-center text-center m-auto w-1/2 '>

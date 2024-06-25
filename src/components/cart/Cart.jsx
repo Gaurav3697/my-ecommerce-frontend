@@ -11,16 +11,25 @@ const Cart = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { cartItems } = useSelector(state => state.cart);
+    const {isAuthenticated} = useSelector(state => state.user)
     
     const deleteHandler = (id) => {
         dispatch(removeItemsFromCart(id));
         toast.success("Item Removed from Cart");
     };
 
+    const placeOrderHandler = (e) =>{
+        if(isAuthenticated){
+            navigate("/checkout")
+        }else{
+            navigate("/login")
+        }
+    }
+
     return (
         <Fragment>
             {cartItems.length === 0 ? (
-                <span className='h-full w-full m-auto bg-white text-8xl'>No item in cart Yet</span>
+                <span className='absolute top-[40vh] left-[10vw] lg:left-[40vw] m-auto bg-white text-4xl'>No item in cart Yet</span>
             ) : (
                 <>
                     <div className="flex flex-col md:flex-row w-screen h-full px-14 py-7 bg-white" >
@@ -74,7 +83,7 @@ const Cart = () => {
                                     </div>
                                 </div> */}
                                 <div className="flex gap-2">
-                                    <button onClick={(e)=>navigate('/checkout')} className="transition-colors text-sm bg-blue-600 hover:bg-blue-700 p-2 rounded-sm w-full text-white text-hover shadow-md">
+                                    <button onClick={placeOrderHandler} className="transition-colors text-sm bg-blue-600 hover:bg-blue-700 p-2 rounded-sm w-full text-white text-hover shadow-md">
                                         PLACE ORDER
                                     </button>
                                     <Link to={'/product'} className="transition-colors text-sm bg-white border border-gray-600 p-2 rounded-sm w-full text-gray-700 text-hover shadow-md">

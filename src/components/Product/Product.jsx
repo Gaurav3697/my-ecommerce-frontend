@@ -25,7 +25,7 @@ const Product = () => {
   const { loading, error, productList } = useSelector((state) => state.productList);
   const [currentPage, setCurrentPage] = useState(1);
   const { keyword } = useParams();
-  const [price, setPrice] = useState([0, 25000]);
+  const [price, setPrice] = useState([0, 100000]);
   const [rating, setRating] = useState(0);
   const [category, setCategory] = useState(0);
 
@@ -62,7 +62,7 @@ const Product = () => {
                   valueLabelDisplay="auto"
                   // getAriaValueText={pricetext} //I didn't understood i will understand its need i will use it
                   min={0}
-                  max={25000}
+                  max={100000}
                 />
               </Box>
             </center>

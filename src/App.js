@@ -26,7 +26,7 @@ import TestComponents from './components/TestComponents';
 export default function App() {
   const dispatch = useDispatch();
   const {isAuthenticated} = useSelector(state=>state.user);
-  const [setStripeApikey]= useState("");
+  const [stripeApiKey,setStripeApikey]= useState("");
 
   const getStripeApiKey = async()=>{
     const {data} = await axios.get(`${server}/stripeApiKey`, {withCredentials: true});
@@ -38,9 +38,9 @@ export default function App() {
       dispatch(loadUser());
     // console.log('isAuthenticated:',isAuthenticated); //removable
     getStripeApiKey(); 
-    // console.log('stripeApiKey:', stripeApiKey);
+    console.log('stripeApiKey:', stripeApiKey);
     }
-  },[dispatch,isAuthenticated])
+  },[dispatch])
 
   return (
     <Router>
@@ -62,6 +62,7 @@ export default function App() {
         <Route path="/order/confirm" element={<ConfirmOrder/>}/>
         {/* In development */}
         <Route path="/process/payment" element={<Payment/>}/> 
+
       </Routes>
       <Footer />
       <Toaster />

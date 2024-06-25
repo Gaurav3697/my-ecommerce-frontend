@@ -93,11 +93,11 @@ const ProductDetail = () => {
             {/* when there is product detail then only render this to avoid undefine error created  while rendering the component i will try to replace with if(loading) condition fetched from redux*/}
             {productDetails && productDetails.product ? (
                 <Fragment>
-                    <div className="md:flex md:items-center mb-32 mt-28 bg-white h-full">
-                        <div className="w-1/2 h-1/2 fixed top-24 m-auto p-4">
-                            <img className="w-full h-auto rounded-md object-cover max-w-lg mx-auto" src="https://images.unsplash.com/photo-1593121925328-369cc8459c08?auto=format&fit=crop&w=286" alt="Headphone" />
+                    <div className="flex flex-col gap-6 md:gap-0 md:flex-row  md:items-center mb-32 mt-28 bg-white h-auto">
+                        <div className="w-1/2 h-1/2 md:fixed top-20 m-auto p-4 lg:left-24">
+                            <img className="h-[60vh] w-auto bg-cover flex justify-center lg:left-20" src={productDetails.product.images[0].url} alt="productDetails.product.name" />
                         </div>
-                        <div className="relative w-1/2 left-1/2 p-4 gap-6">
+                        <div className="flex flex-col w-screen md:relative md:w-1/2 md:left-1/2 p-4 gap-6">
                             <p className="text-gray-700 uppercase underline m-6">{productDetails.product.category}</p>
                             <h2 className="text-gray-900 uppercase m-2">{productDetails.product.name}</h2>
                             <p className="text-gray-500 mt-2 mb-6">{productDetails.product.description}</p>

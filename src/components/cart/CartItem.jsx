@@ -30,7 +30,7 @@ const CartItem = ({item,deleteHandler}) => {
                     {/* <!-- Product Information --> */}
                     <div className="flex flex-row gap-6 items-center">
                         <div className="w-28 h-28">
-                            <img alt="item_image" className="w-full h-full" src="https://static.netshoes.com.br/produtos/tenis-adidas-coreracer-masculino/09/NQQ-4635-309/NQQ-4635-309_zoom1.jpg?ts=1675445414&ims=544x" />
+                            <img alt="item_image" className="w-full h-full" src={item.image} />
                         </div>
                         <div className="flex flex-col">
                             <Link to={`/productDetail/${item.product}`} className="text-lg text-gray-800 font-semibold">{item.name}</Link>

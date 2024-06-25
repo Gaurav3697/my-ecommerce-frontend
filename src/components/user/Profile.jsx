@@ -21,6 +21,7 @@ const Profile = () => {
         }
         if(!isAuthenticated){
             navigate('/login')
+            console.log("I am from profile")
         }
     },[error,isAuthenticated,navigate])
 

@@ -15,7 +15,7 @@ import {
 import {server} from "../index";
 
 //Get all Product
-export const getProduct = (keyword="" , currentPage=1, price=[0,25000],rating=0, category,)=>
+export const getProduct = (keyword="" , currentPage=1, price=[0,100000],rating=0, category,)=>
     async(dispatch) =>{
         try {
             dispatch({type: PRODUCT_LIST_REQUEST});
