@@ -33,7 +33,7 @@ const ResetPassword = () => {
   
   return (
     <>
-    {loading ? "<h1>loading</h1>" : (
+    {loading ? (<div className='text-4xl h-screen w-screen flex justify-center mt-60'>Loading...</div>) : (
                 <div className='flex flex-col m-auto relative top-32 w-1/2 border border-gray-400 rounded-2xl'>
                     <span className="m-5 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Forgot password</span>
                     <form onSubmit={handleSubmit}>
