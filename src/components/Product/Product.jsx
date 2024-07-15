@@ -47,7 +47,6 @@ const Product = () => {
 
   return (
     <Fragment>
-     {loading? (<div className='text-4xl h-screen w-screen flex justify-center mt-60'>Loading...</div>)  :
       <div className='flex flex-col gap-4 Product_Body mt-24 mb-36 h-auto w-screen bg-white'>
       <div className="h-auto grid grid-cols-5">
         <div className="filters h-screen col-span-1" >
@@ -100,13 +99,17 @@ const Product = () => {
 
         </div>
         <div className="product_containers h-auto col-span-4 p-2">
-          <div className='flex flex-wrap m-auto gap-4 bottom-3'>
+          {
+            loading ? (<div className='text-4xl h-screen w-screen flex justify-center mt-60'>Loading...</div>):
+            (<div className='flex flex-wrap m-auto gap-4 bottom-3'>
             {
               productList.products && productList.products.map((product) => (
                 <ProductCard key={product._id} product={product} />
               ))
             }
-          </div>
+          </div>)
+          }
+          
         </div>
       </div>
       {/* you have to also adjust the oagination for filtered product counts */}
@@ -120,7 +123,7 @@ const Product = () => {
             " "
         }
       </div>
-    </div>}
+    </div>
     </Fragment>
   )
 }
