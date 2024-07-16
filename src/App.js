@@ -63,6 +63,9 @@ export default function App() {
         {/* In development */}
         <Route path="/process/payment" element={<Payment/>}/> 
 
+        {/* Admin routes */}
+        
+
       </Routes>
       <Footer />
       <Toaster />
