@@ -2,10 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 body {
   margin: 0;
   font-family: "Rubik", sans-serif;
   font-optical-sizing: auto;
+  overflow-x: hidden;
 }
 
 code {

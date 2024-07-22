@@ -94,14 +94,14 @@ const ProductDetail = () => {
             {productDetails && productDetails.product ? (
                 <Fragment>
                     <div className="flex flex-col gap-6 md:gap-0 md:flex-row  md:items-center mb-32 mt-28 bg-white h-auto">
-                        <div className="w-1/2 h-1/2 md:fixed top-20 m-auto p-4 lg:left-24">
+                        <div className="w-full h-1/2 md:fixed top-20 m-auto p-4 lg:left-24">
                             <img className="h-[60vh] w-auto bg-cover flex justify-center lg:left-20" src={productDetails.product.images[0].url} alt="productDetails.product.name" />
                         </div>
-                        <div className="flex flex-col w-screen md:relative md:w-1/2 md:left-1/2 p-4 gap-6">
-                            <p className="text-gray-700 uppercase underline m-6">{productDetails.product.category}</p>
-                            <h2 className="text-gray-900 uppercase m-2">{productDetails.product.name}</h2>
+                        <div className="flex flex-col w-screen md:relative md:w-1/2 md:left-1/2 p-2 gap-2">
+                            <p className="text-gray-700 uppercase underline m-auto">{productDetails.product.category}</p>
+                            <h2 className="text-gray-900 uppercase m-2 font-bold text-2xl">{productDetails.product.name}</h2>
                             <p className="text-gray-500 mt-2 mb-6">{productDetails.product.description}</p>
-                            <span className="text-gray-950 text-4xl text-center">रु{productDetails.product.price}</span>
+                            <span className="text-gray-950 text-xl">रु{productDetails.product.price}</span>
                             <div className="mt-2">
                                 <div className="flex items-center mt-1 gap-5">
                                     <button onClick={increaseQuantity} className="text-gray-700 focus:outline-none hover:text-gray-950">
@@ -177,7 +177,7 @@ const ProductDetail = () => {
 
 
 
-                            <h2 className='flex justify-center text-2xl text-center m-10 underline'>Reviews</h2>
+                            <h2 className='flex justify-center text-2xl text-center mt-[3vh] mb-[1vh] underline'>Reviews</h2>
                             {/* show user reviews and above all reviews a button to create review after submitting review i will use react-hot-toast to show review submitted successfully*/}
                             {
                                 productDetails.product && productDetails.product.reviews ? (

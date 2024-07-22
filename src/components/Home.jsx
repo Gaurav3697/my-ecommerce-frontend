@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux'
 import ProductCard from '../components/Product/ProductCard';
 import { Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import DemoCarousel from './DemoCarousel';
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -24,29 +25,8 @@ const Home = () => {
 
     return (
         <Fragment>
-
             <div className="flex flex-col z-10 mb-32 mt-28 gap-10 bg-white overflow-x-hidden">
-                <div className="bigImage mx-auto h-[50vh] lg:h-screen w-full relative">
-                    <img
-                        src="/bigImg.png"
-                        alt="bigImage"
-                        className="top-12 md:top-0 h-full w-11/12 left-0 sm:left-12 rounded-xl absolute"
-                    />
-                    <div className="absolute top-16 text-white  left-2 md:left-24 text-xl sm:text-2xl md:text-3xl lg:top-24 lg:font-bold lg:text-4xl">
-                        READY TO EXPERIENCE NEW BEST <br />
-                        ONLINE SHOPPING SERVICES
-                    </div>
-                    <div className="absolute hidden text-white  sm:left-20 top-40 md:top-56 lg:top-60 text-base sm:text-lg md:text-xl md:block">
-                        WE CAN BE YOUR BEST DECISION FOR BUYING
-                        <br /> BEST ELECTRONIC PRODUCT AT MINIMUM PRICE
-                        <br />
-                        SO CHOSE THE BEST WAY TO BUY
-                    </div>
-                    <Link to={"/product"} className="absolute top-60 lg:top-96 md:top-72 left-4 sm:left-24 px-6 sm:px-10 py-2 sm:py-4 bg-white border text-gray-900 rounded-xl border-gray-900 hover:bg-gray-800 hover:text-white transition-colors duration-300 cursor-pointer">
-                        SHOP NOW
-                    </Link>
-                </div>
-
+                <DemoCarousel/>
 
                 <div className="mt-12 md:mt-0 flex flex-col md:flex-row w-full h-screen">
                     <div className="h-5/6 w-full md:w-1/2 relative my-auto">

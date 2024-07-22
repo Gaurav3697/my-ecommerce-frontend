@@ -47,7 +47,7 @@ const Product = () => {
 
   return (
     <Fragment>
-      <div className='flex flex-col gap-4 Product_Body mt-24 mb-36 h-auto w-screen bg-white'>
+      <div className='flex flex-col gap-4 Product_Body mt-24 mb-36 h-auto w-screen bg-white overflow-x-hidden'>
       <div className="h-auto grid grid-cols-5">
         <div className="filters h-screen col-span-1" >
           <span className="text-2xl font-serif text-gray-800 flex justify-center m-10 underline">Filters</span>

@@ -4,8 +4,8 @@ const ReviewCard = ({review}) => {
     return (
         <>
         {/* use name,comment,user-profile-image and rating */}
-        <div className='my-6'>
-            <div className="flex flex-row gap-10 m-auto w-3/4 border border-gray-400 h-auto rounded-2xl shadow-2xl">
+        <div className='my-0'>
+            <div className="flex flex-row gap-1 md:gap-5 m-auto w-3/4 border border-gray-400 h-auto rounded-2xl shadow-2xl">
                 <div className='flex flex-col image w-1/4 left-0'>
                 {/* img is changable */}
                     <img src="/Profile.png" alt="" className="h-3/4" />  

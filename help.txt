@@ -1,136 +1,20 @@
-import React, { Fragment, useEffect, useState } from "react";
-import "./Products.css";
-import { useSelector, useDispatch } from "react-redux";
-import {getProduct } from "../../actions/productAction";
-import ProductCard from "../Product/ProductCard";
-import Pagination from "react-js-pagination";
-import Slider from "@mui/material/Slider";
-import Typography from "@mui/material/Typography";
-import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
-const categories = [
-  "Laptop",
-  "Mobile",
-  "Home Appliances",
-  "TV",
-  "Headphones",
-  "Luxary Electronic Items"
-]
+6)Loading is also not built --> 1.5 hrs--AH
+7)MetaData to change title in each page -> 1.5 hrs -->After hosting
+1)card page need updatation to increase or decrease quantity -->After hosting
+2)modifying cart with adding functionality of increase and decreasing quantity in cart. adding useState in quantity in pruduct detail-->After hosting
+3)Updating user --> I am also skipping it since in this function also cloudinary is needed which is not working in my case -->After hosting
+4)Create Review -->needed user authentication ->Frontend is working well --- Success but still review not submitting 
+5)Register page--->with image cannot post but without image maybe and also handle all images ->4 hrs --watch 6 pack tutorial--understand all related code -- visualize it - read documentaion -- write and test the code to solve problem -After hosting
+10)use rating stars-->AH
+11)for payment page
+--read docs about react stripe
+--correct the mistake
 
-const Product = ({match}) => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+12)for register page
+--prepare register controller for form data
+--learn to transfer data in form 
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [price, setPrice] = useState([0, 25000]);
-  const [category, setCategory] = useState("");
-
-  const [ratings, setRatings] = useState(0);
-
-  const {
-    products,
-    loading,
-    error,
-    productsCount,
-    resultPerPage,
-    filteredProductsCount,
-  } = useSelector((state) => state.productList);
-
-  const keyword = match.params.keyword;
-
-  const setCurrentPageNo = (e) => {
-    setCurrentPage(e);
-  };
-
-  const priceHandler = (event, newPrice) => {
-    setPrice(newPrice);
-  };
-  let count = filteredProductsCount;
-
-  useEffect(() => {
-    if (error) {
-      toast.error(error);
-    }
-
-    dispatch(getProduct(keyword, currentPage, price, category, ratings));
-  }, [dispatch, keyword, currentPage, price, category, ratings, alert, error]);
-
-  return (
-    <Fragment>
-      {loading ? (
-        "LOADING"
-      ) : (
-        <Fragment>
-          {/* <MetaData title="PRODUCTS -- ECOMMERCE" /> */}
-          <h2 className="productsHeading">Products</h2>
-
-          <div className="products">
-            {products &&
-              products.map((product) => (
-                <ProductCard key={product._id} product={product} />
-              ))}
-          </div>
-
-          <div className="filterBox">
-            <Typography>Price</Typography>
-            <Slider
-              value={price}
-              onChange={priceHandler}
-              valueLabelDisplay="auto"
-              aria-labelledby="range-slider"
-              min={0}
-              max={25000}
-            />
-
-            <Typography>Categories</Typography>
-            <ul className="categoryBox">
-              {categories.map((category) => (
-                <li
-                  className="category-link"
-                  key={category}
-                  onClick={() => setCategory(category)}
-                >
-                  {category}
-                </li>
-              ))}
-            </ul>
-
-            <fieldset>
-              <Typography component="legend">Ratings Above</Typography>
-              <Slider
-                value={ratings}
-                onChange={(e, newRating) => {
-                  setRatings(newRating);
-                }}
-                aria-labelledby="continuous-slider"
-                valueLabelDisplay="auto"
-                min={0}
-                max={5}
-              />
-            </fieldset>
-          </div>
-          {resultPerPage < count && (
-            <div className="paginationBox">
-              <Pagination
-                activePage={currentPage}
-                itemsCountPerPage={resultPerPage}
-                totalItemsCount={productsCount}
-                onChange={setCurrentPageNo}
-                nextPageText="Next"
-                prevPageText="Prev"
-                firstPageText="1st"
-                lastPageText="Last"
-                itemClass="page-item"
-                linkClass="page-link"
-                activeClass="pageItemActive"
-                activeLinkClass="pageLinkActive"
-              />
-            </div>
-          )}
-        </Fragment>
-      )}
-    </Fragment>
-  );
-};
-
-export default Product;
+13)Things to learn
+  1)cloudinary
+  2)Form-data
+14)mediaquery to make application responsive
