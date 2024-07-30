@@ -12,12 +12,13 @@ import { Link } from 'react-router-dom'
 export default function ProductCard({_id,product}) {
   return (
     
-    <Card sx={{ width: 320, maxWidth: '100%', boxShadow: 'lg' }}>
+    <Card sx={{ width: 300, maxWidth: '100%', boxShadow: 'lg' }}>
       <CardOverflow>
-        <AspectRatio sx={{ minWidth: 200 }}>
+        <AspectRatio sx={{ height: 1 }}>
           <img
             src={product.images[0].url}
             alt=""
+            className='size-fit'
           />
         </AspectRatio>
       </CardOverflow>

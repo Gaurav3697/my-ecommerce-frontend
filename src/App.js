@@ -22,7 +22,9 @@ import {server} from "./index";
 import Payment from './components/cart/Payment';
 import Product from './components/Product/Product';
 import TestComponents from './components/TestComponents';
-import Dashboard from './components/Admin/Dashboard';
+import AdminProduct from './components/Admin/AdminProduct';
+import AdminUser from './components/Admin/AdminUser';
+import AdminOrder from './components/Admin/AdminOrder';
 
 export default function App() {
   const dispatch = useDispatch();
@@ -65,8 +67,9 @@ export default function App() {
         <Route path="/process/payment" element={<Payment/>}/> 
 
         {/* Admin routes */}
-        <Route path="/admin/dashboard" element={<Dashboard/>}/> 
-
+        <Route path="/admin/Products" element={<AdminProduct/>}/> 
+        <Route path="/admin/Customers" element={<AdminUser/>}/> 
+        <Route path="/admin/Orders" element={<AdminOrder/>}/> 
 
       </Routes>
       <Footer />

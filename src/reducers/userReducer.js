@@ -26,6 +26,9 @@ import {
     UPDATE_PROFILE_RESET,
     UPDATE_PASSWORD_RESET,
     CLEAR_ERRORS,
+    ALL_USERS_REQUEST,
+    ALL_USERS_SUCCESS,
+    ALL_USERS_FAIL,
 } from "../constants/userConstants";
 
 //login and register reducer --> You cannot make mor than one reducer just to update user
@@ -116,5 +119,36 @@ export const forgotPasswordReducer = (state = {}, action) => {
             return state
     }
 }
+
+export const allUsersReducer = (state = { users: [] , loading:true }, action) => {
+    switch (action.type) {
+      case ALL_USERS_REQUEST:
+        return {
+          ...state,
+        };
+      case ALL_USERS_SUCCESS:
+        return {
+          loading: false,
+          users: action.payload,
+        };
+  
+      case ALL_USERS_FAIL:
+        return {
+          ...state,
+          loading: false,
+          error: action.payload,
+        };
+  
+      case CLEAR_ERRORS:
+        return {
+          ...state,
+          error: null,
+        };
+  
+      default:
+        return state;
+    }
+  };
+  
 
 //reset password reducer

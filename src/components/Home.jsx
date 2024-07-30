@@ -37,8 +37,7 @@ const Home = () => {
                         />
                         <div className="h-5/6 w-11/12 mx-auto md:m-auto rounded-xl absolute md:left-20 text-white text-xl md:text-3xl bg-gray-900 bg-opacity-50 border border-white">
                             <div className="w-3/4 h-full flex flex-col justify-center items-center mx-auto space-y-4 tracking-wider p-4 md:p-0">
-                                GET BRANDED MOBILES PHONES AND<br />
-                                LAPTOPS AT BEST RATE <br />
+                                WE ALSO REPAIRS MOBILES AND COMPUTERS
                                 <Link to={'/product'} className="text-lg underline hover:text-gray-300 cursor-pointer">SEE MORE</Link>
                             </div>
                         </div>

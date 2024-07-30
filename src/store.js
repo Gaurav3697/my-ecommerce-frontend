@@ -1,10 +1,10 @@
 import {createStore,combineReducers,applyMiddleware} from "redux";
 import {thunk} from "redux-thunk";
 import {composeWithDevTools} from "@redux-devtools/extension";
-import {productsReducer,productDetailsReducer, newReviewReducer} from "./reducers/productReducer";
-import { forgotPasswordReducer, profileReducer, userReducer } from "./reducers/userReducer";
+import {productsReducer,productDetailsReducer, newReviewReducer, newProductReducer, productReducer, productUpdateReducer} from "./reducers/productReducer";
+import { allUsersReducer, forgotPasswordReducer, profileReducer, userReducer } from "./reducers/userReducer";
 import { cartReducer } from "./reducers/cartReducer";
-import { newOrderReducer } from "./reducers/orderReducer";
+import { getAllOrdersReducer, newOrderReducer } from "./reducers/orderReducer";
 // import { persistStore, persistReducer } from 'redux-persist' //This helps to store userData in localhost when logged in but i want to do the same using cookie
 // import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
 
@@ -18,6 +18,15 @@ const reducer = combineReducers({
     cart: cartReducer,
     newOrder:newOrderReducer,
     newReview: newReviewReducer,
+    // admin product reducers
+    newProduct: newProductReducer,
+    updateProduct:productUpdateReducer,
+
+    //admin userReducers
+    allusers:allUsersReducer,
+
+    //admin orderReducers
+    allOrders:getAllOrdersReducer,
 })
 
 // const persistConfig = { //when there is persistor

@@ -22,6 +22,9 @@ import {
     RESET_PASSWORD_REQUEST,
     RESET_PASSWORD_SUCCESS,
     RESET_PASSWORD_FAIL,
+    ALL_USERS_REQUEST,
+    ALL_USERS_SUCCESS,
+    ALL_USERS_FAIL,
     CLEAR_ERRORS,
 } from "../constants/userConstants";
 import axios from "axios";
@@ -149,6 +152,18 @@ export const resetPassword = (token, passwords) => async (dispatch) => {
     }
 }
 
+//admin actions
+export const getAllUsers = () => async (dispatch) => {
+    try {
+        dispatch({ type: ALL_USERS_REQUEST});
+
+        const { data } = await axios.get(`${server}/admin/getAllUser`,{withCredentials: true});
+
+        dispatch({ type: ALL_USERS_SUCCESS, payload: data });
+    } catch (error) {
+        dispatch({ type: ALL_USERS_FAIL, payload: error.response.data.message });
+    }
+};
 
 // Clearing Errors
 export const clearErrors = () => async (dispatch) => {

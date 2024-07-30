@@ -9,7 +9,11 @@ import {
     // ORDER_DETAILS_REQUEST,
     // ORDER_DETAILS_SUCCESS,
     // ORDER_DETAILS_FAIL,
+    ALL_ORDERS_REQUEST,
+    ALL_ORDERS_SUCCESS,
+    ALL_ORDERS_FAIL,
 } from "../constants/orderConstants";
+import { server } from "../index";
 
 export const createOrder = (order) => async (dispatch) => {
     try {
@@ -33,6 +37,29 @@ export const createOrder = (order) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: CREATE_ORDER_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        });
+    }
+};
+
+export const getAllOrders = () => async (dispatch) => {
+    try {
+        dispatch({
+            type: ALL_ORDERS_REQUEST,
+        });
+
+        const { data } = await axios.get(`${server}/orders/all`,{withCredentials:true});
+
+        dispatch({
+            type: ALL_ORDERS_SUCCESS,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: ALL_ORDERS_FAIL,
             payload:
                 error.response && error.response.data.message
                     ? error.response.data.message

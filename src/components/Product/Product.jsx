@@ -49,7 +49,7 @@ const Product = () => {
     <Fragment>
       <div className='flex flex-col gap-4 Product_Body mt-24 mb-36 h-auto w-screen bg-white overflow-x-hidden'>
       <div className="h-auto grid grid-cols-5">
-        <div className="filters h-screen col-span-1" >
+        <div className="hidden md:block filters h-screen col-span-1" >
           <span className="text-2xl font-serif text-gray-800 flex justify-center m-10 underline">Filters</span>
           <div className='flex flex-col gap-7'>
             <center>
@@ -98,7 +98,7 @@ const Product = () => {
           </div>
 
         </div>
-        <div className="product_containers h-auto col-span-4 p-2">
+        <div className="product_containers h-auto col-span-4 p-2 m-10">
           {
             loading ? (<div className='text-4xl h-screen w-screen flex justify-center mt-60'>Loading...</div>):
             (<div className='flex flex-wrap m-auto gap-4 bottom-3'>

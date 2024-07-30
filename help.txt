@@ -18,3 +18,7 @@
   1)cloudinary
   2)Form-data
 14)mediaquery to make application responsive
+
+name,description,price,images,category,stock
+
+i can decide whether to create of update using function that i will pass to the form updateHanler and cleatehandler
