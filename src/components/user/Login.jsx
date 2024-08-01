@@ -8,8 +8,8 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
     const dispatch = useDispatch();
     const { loading, isAuthenticated, error } = useSelector((state) => state.user)
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("Admin@gmail.com");
+    const [password, setPassword] = useState("password");
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
 

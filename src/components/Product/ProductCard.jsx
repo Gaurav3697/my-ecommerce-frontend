@@ -9,33 +9,30 @@ import Typography from '@mui/joy/Typography';
 import { Link } from 'react-router-dom'
 
 
-export default function ProductCard({_id,product}) {
+export default function ProductCard({ product }) {
   return (
-    
-    <Card sx={{ width: 300, maxWidth: '100%', boxShadow: 'lg' }}>
+
+    <Card className='w-auto md:w-1/4'>
       <CardOverflow>
-        <AspectRatio sx={{ height: 1 }}>
-          <img
-            src={product.images[0].url}
-            alt=""
-            className='size-fit'
-          />
-        </AspectRatio>
+        <img
+          src={product.images[0].url}
+          alt=""
+          className='object-contain w-auto h-auto md:h-44 md:w-auto'
+        />
       </CardOverflow>
       <CardContent>
         <Typography level="title-sm">{product.category}</Typography>
-        <Link 
+        <Link
           to={`/productDetail/${product._id}`}
-          className='text-2xl font-bold'
+          className='text-md font-bold'
           color="neutral"
           textcolor="text.primary"
         >
-          {product.name} 
+          {product.name}
         </Link>
 
         <Typography
           level="title-lg"
-          sx={{ mt: 1, fontWeight: 'xl' }}
         //   endDecorator={
         //      <Chip component="span" size="sm" variant="soft" color="success"> //In future I may use it
         //        Lowest price
@@ -44,23 +41,20 @@ export default function ProductCard({_id,product}) {
         >
           रु {product.price}
         </Typography>
-        <Typography level="body-md">
+        <Typography level="body-sm">
           (Only <b>{product.stock}</b> left in stock!)
         </Typography>
 
         <Typography level="body-sm">
           {`Rating: ${product.rating} stars (${product.reviews.length} Reviews)`}
         </Typography>
-
-      </CardContent>
-      <CardOverflow>
-      <Link 
+        <Link
           to={`/productDetail/${product._id}`}
-          className="block w-full m-auto text-white bg-indigo-700 text-lg font-semibold rounded-xl hover:bg-indigo-600 cursor-pointer hover:shadow-xs p-3 my-4"
+          className="block w-full m-auto text-gray-900 text-center bg-gray-300 text-lg font-semibold rounded-xl hover:bg-gray-600 cursor-pointer hover:shadow-xs p-1 my-2"
         >
           ADD TO CART
         </Link>
-      </CardOverflow>
+      </CardContent>
     </Card>
   );
 }

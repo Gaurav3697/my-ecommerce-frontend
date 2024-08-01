@@ -94,8 +94,8 @@ const ProductDetail = () => {
             {productDetails && productDetails.product ? (
                 <Fragment>
                     <div className="flex flex-col gap-6 md:gap-0 md:flex-row  md:items-center mb-32 mt-28 bg-white h-auto">
-                        <div className="w-full h-1/2 md:fixed top-20 m-auto p-4 lg:left-24">
-                            <img className="h-[60vh] w-auto bg-cover flex justify-center lg:left-20" src={productDetails.product.images[0].url} alt="productDetails.product.name" />
+                        <div className="w-full h-1/2 md:fixed md:top-40 m-auto p-4 lg:left-24">
+                            <img className="h-auto md:h-[50vh] w-auto flex justify-center lg:left-20" src={productDetails.product.images[0].url} alt="productDetails.product.name" />
                         </div>
                         <div className="flex flex-col w-screen md:relative md:w-1/2 md:left-1/2 p-2 gap-2">
                             <p className="text-gray-700 uppercase underline m-auto">{productDetails.product.category}</p>

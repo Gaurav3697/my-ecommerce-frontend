@@ -4,7 +4,7 @@ import {composeWithDevTools} from "@redux-devtools/extension";
 import {productsReducer,productDetailsReducer, newReviewReducer, newProductReducer, productReducer, productUpdateReducer} from "./reducers/productReducer";
 import { allUsersReducer, forgotPasswordReducer, profileReducer, userReducer } from "./reducers/userReducer";
 import { cartReducer } from "./reducers/cartReducer";
-import { getAllOrdersReducer, newOrderReducer } from "./reducers/orderReducer";
+import { getAllOrdersReducer, newOrderReducer, paymentreducer } from "./reducers/orderReducer";
 // import { persistStore, persistReducer } from 'redux-persist' //This helps to store userData in localhost when logged in but i want to do the same using cookie
 // import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
 
@@ -27,6 +27,7 @@ const reducer = combineReducers({
 
     //admin orderReducers
     allOrders:getAllOrdersReducer,
+    paymentData:paymentreducer,
 })
 
 // const persistConfig = { //when there is persistor

@@ -174,7 +174,7 @@ const AdminProduct = () => {
 
           {/* React table and pagination for products */}
           {
-            !productList.products ? (<div className='text-4xl h-screen w-screen flex justify-center mt-60'>Loading...</div>) :
+            loading ? (<div className='text-4xl h-screen w-screen flex justify-center mt-60'>Loading...</div>) :
               (<ReusableTable data={productList.products} columns={columns} />)
           }
         </div>

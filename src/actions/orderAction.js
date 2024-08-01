@@ -12,6 +12,9 @@ import {
     ALL_ORDERS_REQUEST,
     ALL_ORDERS_SUCCESS,
     ALL_ORDERS_FAIL,
+    PAYMENT_REQUEST,
+    PAYMENT_SUCCESS,
+    PAYMENT_FAIL,
 } from "../constants/orderConstants";
 import { server } from "../index";
 
@@ -60,6 +63,29 @@ export const getAllOrders = () => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: ALL_ORDERS_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        });
+    }
+};
+
+export const getPaymentData = (price) => async (dispatch) => {
+    try {
+        dispatch({
+            type: PAYMENT_REQUEST,
+        });
+
+        const { data } = await axios.post(`${server}/orders/payment`, { price }, {withCredentials:true});
+
+        dispatch({
+            type: PAYMENT_SUCCESS,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: PAYMENT_FAIL,
             payload:
                 error.response && error.response.data.message
                     ? error.response.data.message

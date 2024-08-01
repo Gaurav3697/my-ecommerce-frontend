@@ -27,7 +27,7 @@ import {
   UPDATE_PRODUCT_RESET
 } from "../constants/productConstants";
 
-export const productsReducer = (state = { productList: [] }, action) => {
+export const productsReducer = (state = { productList: [],loading:true }, action) => {
   switch (action.type) {
     case PRODUCT_LIST_REQUEST:
     case ADMIN_PRODUCT_REQUEST:

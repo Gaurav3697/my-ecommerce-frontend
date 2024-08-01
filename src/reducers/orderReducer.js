@@ -17,6 +17,9 @@ import {
     // DELETE_ORDER_REQUEST,
     // DELETE_ORDER_SUCCESS,
     // DELETE_ORDER_FAIL,
+    PAYMENT_REQUEST,
+    PAYMENT_SUCCESS,
+    PAYMENT_FAIL,
     CLEAR_ERRORS,
 } from "../constants/orderConstants";
 
@@ -79,3 +82,33 @@ export const getAllOrdersReducer = (state = { orders: [],loading:true }, action)
         return state;
     }
   };
+
+  //paymentreducer to store price, ans some other datas
+export const paymentreducer = (state = { paymentData: [] , loading:true }, action) => {
+  switch (action.type) {
+    case PAYMENT_REQUEST:
+      return {
+        loading: true,
+      };
+
+    case PAYMENT_SUCCESS:
+      return {
+        loading: false,
+        paymentData: action.payload,
+      };
+
+    case PAYMENT_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
+
+    default:
+      return state;
+  }
+};

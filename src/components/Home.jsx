@@ -29,7 +29,7 @@ const Home = () => {
                 <DemoCarousel/>
 
                 <div className="mt-12 md:mt-0 flex flex-col md:flex-row w-full h-screen">
-                    <div className="h-5/6 w-full md:w-1/2 relative my-auto">
+                    <div className="h-5/6 w-full md:w-1/2 relative my-auto left-4">
                         <img
                             src="/img3.jpg"
                             alt="smallImage"
@@ -42,7 +42,7 @@ const Home = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="h-5/6 w-full md:w-1/2 relative my-auto">
+                    <div className="h-5/6 w-full md:w-1/2 relative my-auto left-4">
                         <img
                             src="/img2.jpg"
                             alt="smallImage"

@@ -19,12 +19,14 @@ import Shipping from './components/cart/Shipping';
 import ConfirmOrder from './components/cart/ConfirmOrder';
 import axios from "axios";
 import {server} from "./index";
-import Payment from './components/cart/Payment';
+// import Payment from './components/cart/Payment';
 import Product from './components/Product/Product';
 import TestComponents from './components/TestComponents';
 import AdminProduct from './components/Admin/AdminProduct';
 import AdminUser from './components/Admin/AdminUser';
 import AdminOrder from './components/Admin/AdminOrder';
+import Success from './components/cart/Success';
+import Failure from './components/cart/Failure';
 
 export default function App() {
   const dispatch = useDispatch();
@@ -64,12 +66,16 @@ export default function App() {
         <Route path="/checkout" element={<Shipping/>}/>
         <Route path="/order/confirm" element={<ConfirmOrder/>}/>
         {/* In development */}
-        <Route path="/process/payment" element={<Payment/>}/> 
+        {/* <Route path="/process/payment" element={<Payment/>}/>  */}
+        <Route path="/process/payment/success" element={<Success />}/> 
+        <Route path="/process/payment/failure" element={<Failure />}/> 
+
 
         {/* Admin routes */}
         <Route path="/admin/Products" element={<AdminProduct/>}/> 
         <Route path="/admin/Customers" element={<AdminUser/>}/> 
         <Route path="/admin/Orders" element={<AdminOrder/>}/> 
+
 
       </Routes>
       <Footer />
