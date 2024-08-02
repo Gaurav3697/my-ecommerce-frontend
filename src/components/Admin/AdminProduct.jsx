@@ -52,7 +52,7 @@ const AdminProduct = () => {
   const dispatch = useDispatch();
   const { loading, productList, error } = useSelector((state) => state.productList);
   const { user, isAuthenticated } = useSelector((state) => state.user)
-  const {success, error:deleteError} = useSelector((state)=>state.updateProduct)
+  const { success, error: deleteError } = useSelector((state) => state.updateProduct)
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -66,7 +66,8 @@ const AdminProduct = () => {
 
   useEffect(() => {
     if (error) {
-      console.log(error);
+      navigate('/profile')
+      toast.error(error);
     }
     dispatch(getAdminProduct());
     if (!isAuthenticated) {
@@ -75,15 +76,15 @@ const AdminProduct = () => {
       navigate('/login')
       console.log("I am from profile")
     }
-    if(success){
+    if (success) {
       toast.success("Product delete Successfully");
       dispatch(getAdminProduct());
     }
-    if(deleteError){
+    if (deleteError) {
       toast.error("Product didn't deleted successfully");
     }
     // console.log(productList.products); //ProductList is the array that contain message and array of products
-  }, [dispatch, isAuthenticated,success]);
+  }, [dispatch, isAuthenticated, success]);
 
   const columnHelper = createColumnHelper(); //used to create column defination
 
@@ -175,7 +176,12 @@ const AdminProduct = () => {
           {/* React table and pagination for products */}
           {
             loading ? (<div className='text-4xl h-screen w-screen flex justify-center mt-60'>Loading...</div>) :
-              (<ReusableTable data={productList.products} columns={columns} />)
+              (
+                <div className="">
+                  {productList.products &&
+                    <ReusableTable data={productList.products} columns={columns} />}
+                </div>
+              )
           }
         </div>
       </div>
