@@ -84,7 +84,7 @@ const AdminProduct = () => {
       toast.error("Product didn't deleted successfully");
     }
     // console.log(productList.products); //ProductList is the array that contain message and array of products
-  }, [dispatch, isAuthenticated, success]);
+  }, [dispatch, isAuthenticated, success,error]);
 
   const columnHelper = createColumnHelper(); //used to create column defination
 
