@@ -70,11 +70,9 @@ const AdminProduct = () => {
       toast.error(error);
     }
     dispatch(getAdminProduct());
-    if (!isAuthenticated) {
-    }
+
     if (!isAuthenticated) {
       navigate('/login')
-      console.log("I am from profile")
     }
     if (success) {
       toast.success("Product delete Successfully");

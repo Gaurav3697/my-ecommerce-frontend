@@ -12,6 +12,8 @@ const UpdatePassword = () => {
     const navigate = useNavigate();
     const {loading,error} = useSelector((state=>state.profile));
     let {isUpdated} = useSelector((state=>state.profile));
+    const { isAuthenticated } = useSelector((state) => state.user)
+
     const submitFormHandler = (e)=>{
         e.preventDefault();
         const data = {
@@ -38,7 +40,11 @@ const UpdatePassword = () => {
             type: UPDATE_PASSWORD_RESET,
           });
       }
-    }, [error,isUpdated,toast,navigate])
+      if(!isAuthenticated){
+        navigate('/login')
+        console.log("I am from profile")
+    }
+    }, [error,isUpdated,toast,navigate,isAuthenticated])
     
 
     return (

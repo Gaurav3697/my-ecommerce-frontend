@@ -11,6 +11,7 @@ const ConfirmOrder = () => {
   const dispatch = useDispatch();
   const { shippingInfo, cartItems } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.user);
+  const { isAuthenticated } = useSelector((state) => state.user)
   const { paymentData, loading, error } = useSelector((state) => state.paymentData);
 
   const subtotal = cartItems.reduce(
@@ -38,6 +39,10 @@ const ConfirmOrder = () => {
     if (error) {
       // navigate('/process/payment/failure');
       console.log(error);
+    }
+    if (!isAuthenticated) {
+      navigate('/login')
+      console.log("I am from profile")
     }
   }, [error, navigate]);
 
