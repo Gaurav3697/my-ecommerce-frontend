@@ -25,8 +25,8 @@ const CartItem = ({item,deleteHandler}) => {
     return (
         <>
             {/* <!-- Product --> */}
-            <div className="flex flex-col p-4 text-lg font-semibold shadow-md border rounded-sm">
-                <div className="flex flex-col md:flex-row gap-3 justify-between">
+            <div className="flex flex-col p-0.5 md:p-4 text-lg font-semibold shadow-md border rounded-sm">
+                <div className="flex flex-row gap-0.5 md:gap-3 justify-between p-1">
                     {/* <!-- Product Information --> */}
                     <div className="flex flex-row gap-6 items-center">
                         <div className="w-28 h-28">
@@ -40,7 +40,7 @@ const CartItem = ({item,deleteHandler}) => {
                                     {/* <button onClick={increaseQuantity} className="text-gray-700 focus:outline-none hover:text-gray-950">
                                         <svg className="h-5 w-5" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                     </button> */}
-                                    <span className="text-gray-700 text-lg mx-2">Quantity:{item.quantity}</span>
+                                    <span className="text-gray-700 text-lg mx-2">Qty:{item.quantity}</span>
                                     {/* <button onClick={decreaseQuantity} className="text-gray-700 focus:outline-none hover:text-gray-950">
                                         <svg className="h-5 w-5" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                     </button> */}

@@ -24,9 +24,9 @@ const Header = () => {
   //when user is logged out redirect him directly to login page
   return (
     <Fragment>
-      <header className='text-gray-500 fixed top-0 bg-white w-full h-auto z-20 shadow-md flex flex-col gap-3'>
+      <header className='text-gray-500 fixed top-0 bg-white w-full h-auto z-20 shadow-md flex flex-col gap-1 md:gap-3'>
         <div className='container mx-auto flex flex-wrap p-2 md:p-4 items-center justify-between'>
-          <div className='flex items-center mx-3'>
+          <div className='flex items-center mx-1'>
             <img src="/logo.jpg" alt="logo" className='h-6 md:h-15' />
           </div>
           <nav className='flex-1 flex items-center justify-center space-x-1 md:space-x-4 gap-0.5 md:gap-2 lg:gap-10'>
@@ -53,14 +53,14 @@ const Header = () => {
           </div>
 
 
-          <div className='flex items-center justify-end space-x-[3vw] md:space-x-8 mt-4 md:mt-0 z-10 right-0 lg:right-6 lg:gap-12'>
+          <div className='flex items-center justify-end space-x-3 md:space-x-8 md:mt-0 z-10 right-0 lg:right-6 lg:gap-12'>
             <Link to={'/cart'} className='hover:text-gray-900 text-sm md:text-xl transition-colors duration-300'>
               <ShoppingCartOutlinedIcon />
-              <span className='text-sm'>cart({cartItems.length})</span>
+              <span className='text-sm md:text-lg'>Cart({cartItems.length})</span>
             </Link>
             <Link to={'/login'} className='hover:text-gray-900 text-sm md:text-xl transition-colors duration-300 '>
               <AccountCircleOutlinedIcon />
-              <span className='text-sm'>{user ? user.name : "Login"}Login</span>
+              <span className='text-sm'>{user ? user.name : "Login"}</span>
             </Link>
           </div>
         </div>

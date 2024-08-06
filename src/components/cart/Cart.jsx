@@ -32,10 +32,10 @@ const Cart = () => {
                 <span className='absolute top-[40vh] left-[10vw] lg:left-[40vw] m-auto bg-white text-4xl'>No item in cart Yet</span>
             ) : (
                 <>
-                    <div className="flex flex-col md:flex-row w-screen h-full px-14 py-7 bg-white" >
+                    <div className="flex flex-col md:flex-row w-screen h-full px-2 pt-24 md:px-14 py-7 bg-white" >
 
                         {/* My cart text heading */}
-                        <div className="w-full flex flex-col h-fit gap-4 p-4 ">
+                        <div className="w-full flex flex-col h-fit gap-1 md:gap-4 p-0.5 md:p-4 ">
                             <p className="text-blue-900 text-xl font-extrabold">My cart</p>
                             {
                                 cartItems && cartItems.map(item => (

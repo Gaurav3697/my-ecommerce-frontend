@@ -29,6 +29,10 @@ const Product = () => {
   const [rating, setRating] = useState(0);
   const [category, setCategory] = useState(0);
 
+  // for hamburger
+  const [isOpen, setIsOpen] = useState(false);
+  const genericHamburgerLine = `h-1 w-6 my-1 rounded-full bg-black transition ease transform duration-300`;
+
   const handleChange = (e, value) => {
     setCurrentPage(value);
   };
@@ -41,31 +45,55 @@ const Product = () => {
     if (error) {
       console.log(error);
     }
-    dispatch(getProduct(keyword, currentPage, price,rating,category));
-  }, [dispatch, error, keyword, currentPage, price,rating,category]);
+    dispatch(getProduct(keyword, currentPage, price, rating, category));
+  }, [dispatch, error, keyword, currentPage, price, rating, category]);
 
 
   return (
     <Fragment>
       <div className='flex flex-col gap-4 Product_Body mt-24 mb-36 h-auto w-screen bg-white overflow-x-hidden'>
-      <div className="h-auto grid grid-cols-5">
-        <div className="hidden md:block filters h-screen col-span-1" >
-          <span className="text-2xl font-serif text-gray-800 flex justify-center m-10 underline">Filters</span>
-          <div className='flex flex-col gap-7'>
-            <center>
-              <Typography>Price</Typography>
-              <Box sx={{ width: 200 }}>
-                <Slider
-                  value={price}
-                  onChange={priceHandler}
-                  valueLabelDisplay="auto"
-                  // getAriaValueText={pricetext} //I didn't understood i will understand its need i will use it
-                  min={0}
-                  max={100000}
-                />
-              </Box>
-            </center>
-            <center>
+        <div className="h-auto grid grid-cols-5">
+
+          {/* hamburger menu */}
+          <button
+              className="flex flex-col h-12 w-12 rounded justify-center items-center group md:hidden"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              <div
+                className={`${genericHamburgerLine} ${isOpen
+                    ? "rotate-45 translate-y-3 opacity-50 group-hover:opacity-100"
+                    : "opacity-50 group-hover:opacity-100"
+                  }`}
+              />
+              <div
+                className={`${genericHamburgerLine} ${isOpen ? "opacity-0" : "opacity-50 group-hover:opacity-100"
+                  }`}
+              />
+              <div
+                className={`${genericHamburgerLine} ${isOpen
+                    ? "-rotate-45 -translate-y-3 opacity-50 group-hover:opacity-100"
+                    : "opacity-50 group-hover:opacity-100"
+                  }`}
+              />
+            </button>
+
+
+          <div className= {`${isOpen ? "block" : "hidden"} md:block filters h-screen col-span-1`} >
+            <div className='flex flex-col gap-2 fixed md:left-10'>
+              <center>
+                <Typography>Price</Typography>
+                <Box sx={{ width: 200 }}>
+                  <Slider
+                    value={price}
+                    onChange={priceHandler}
+                    valueLabelDisplay="auto"
+                    // getAriaValueText={pricetext} //I didn't understood i will understand its need i will use it
+                    min={0}
+                    max={100000}
+                  />
+                </Box>
+              </center>
+              <center>
                 <Typography>Ratings Above</Typography>
                 <Box sx={{ width: 200 }}>
                   <Slider
@@ -80,50 +108,50 @@ const Product = () => {
                     max={5}
                   />
                 </Box>
-            </center>
-            <center>
-            <Typography>Categories</Typography>
-          <ul className="flex flex-col gap-5 m-auto w-3/4 p-5">
-            {categories.map((category) => (
-              <li
-                className="text-md text-black hover:bg-gray-300 p-3 border rounded-xl transition-all cursor-pointer"
-                key={category}
-                onClick={() => setCategory(category)}
-              >
-                {category}
-              </li>
-            ))}
-          </ul>
-            </center>
-          </div>
+              </center>
+              <center>
+                <Typography>Categories</Typography>
+                <ul className="flex flex-col m-auto w-3/4 p-2 border border-gray-700 mt-2 rounded-lg">
+                  {categories.map((category) => (
+                    <li
+                      className="text-sm text-black hover:bg-gray-400 px-4 py-1 rounded-xl transition-all cursor-pointer"
+                      key={category}
+                      onClick={() => setCategory(category)}
+                    >
+                      {category}
+                    </li>
+                  ))}
+                </ul>
+              </center>
+            </div>
 
-        </div>
-        <div className="product_containers h-auto col-span-4 p-2 m-10">
-          {
-            loading ? (<div className='text-4xl h-screen w-screen flex justify-center mt-60'>Loading...</div>):
-            (<div className='flex flex-wrap m-auto gap-4 bottom-3'>
+          </div>
+          <div className={`${isOpen ? "hidden" : "block"} md:block product_containers h-auto col-span-4 p-2 m-10`}>
             {
-              productList.products && productList.products.map((product) => (
-                <ProductCard key={product._id} product={product} />
-              ))
+              loading ? (<div className='text-4xl h-screen w-screen flex justify-center mt-60'>Loading...</div>) :
+                (<div className='flex flex-wrap m-auto gap-4 bottom-3'>
+                  {
+                    productList.products && productList.products.map((product) => (
+                      <ProductCard key={product._id} product={product} />
+                    ))
+                  }
+                </div>)
             }
-          </div>)
+
+          </div>
+        </div>
+        {/* you have to also adjust the oagination for filtered product counts */}
+        <div className="pagination h-auto flex justify-end items-center m-10">
+          {
+            productList.productCount && productList.resultPerPage ?
+              (productList.productCount / productList.resultPerPage > 1 ? <Stack spacing={2}>
+                <Pagination count={parseInt((productList.productCount / productList.resultPerPage) + 1)} color="primary" page={currentPage} onChange={handleChange} />
+              </Stack> : "")
+              :
+              " "
           }
-          
         </div>
       </div>
-      {/* you have to also adjust the oagination for filtered product counts */}
-      <div className="pagination h-auto flex justify-end items-center m-10">
-        {
-          productList.productCount && productList.resultPerPage ?
-          (productList.productCount/productList.resultPerPage>1?<Stack spacing={2}>
-            <Pagination count={parseInt((productList.productCount / productList.resultPerPage) + 1)} color="primary" page={currentPage} onChange={handleChange} />
-          </Stack>:"")
-             :
-            " "
-        }
-      </div>
-    </div>
     </Fragment>
   )
 }

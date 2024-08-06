@@ -128,3 +128,7 @@
     }
   }
   
+  .formBtn{
+    @apply bg-[tomato] text-[white] text-sm absolute md:right-36 md:top-[95vh] w-40 cursor-pointer transition-[0.5s] p-[1vmax] border-[none] hover:bg-[rgb(192,71,50)];
+    font: 400 1vmax "Roboto"  ;
+  }

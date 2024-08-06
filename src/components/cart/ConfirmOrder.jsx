@@ -7,33 +7,42 @@ import './ConfirmOrder.css'
 import { getPaymentData } from '../../actions/orderAction';
 
 const ConfirmOrder = () => {
+  
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { shippingInfo, cartItems } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.user);
   const { isAuthenticated } = useSelector((state) => state.user)
   const { paymentData, loading, error } = useSelector((state) => state.paymentData);
-
+  
   const subtotal = cartItems.reduce(
     (acc, item) => acc + item.quantity * item.price,
     0
   );
-  const shippingCharges = subtotal > 1000 ? 0 : 200;
+  // const shippingCharges = subtotal > 1000 ? 0 : 200;
+  const shippingCharges = 10;
   const tax = subtotal * 0.13;
   const totalPrice = subtotal + tax + shippingCharges;
   const address = `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.state}, ${shippingInfo.pinCode}, ${shippingInfo.country}`;
-
-  const proceedToPayment = () => {
-    const data = {
-      subtotal,
-      shippingCharges,
-      tax,
-      totalPrice,
-    };
-    sessionStorage.setItem("orderInfo", JSON.stringify(data));
-    dispatch(getPaymentData(totalPrice));
-    // navigate('/process/payment');
-  }
+  
+  const data = {
+    subtotal,
+    shippingCharges,
+    tax,
+    totalPrice,
+  };
+  // const proceedToPayment = () => {
+  //   const data = {
+  //     subtotal,
+  //     shippingCharges,
+  //     tax,
+  //     totalPrice,
+  //   };
+  //   sessionStorage.setItem("orderInfo", JSON.stringify(data));
+  //   dispatch(getPaymentData(totalPrice));
+    
+  //   // navigate('/process/payment');
+  // }
 
   useEffect(() => {
     if (error) {
@@ -42,9 +51,11 @@ const ConfirmOrder = () => {
     }
     if (!isAuthenticated) {
       navigate('/login')
-      console.log("I am from profile")
     }
-  }, [error, navigate]);
+    sessionStorage.setItem("orderInfo", JSON.stringify(data));
+    dispatch(getPaymentData(totalPrice));
+  }, [error, navigate,dispatch]);
+  console.log(totalPrice)
 
   return (
     <Fragment>
@@ -112,23 +123,25 @@ const ConfirmOrder = () => {
                     </p>
                     <span>₹{totalPrice}</span>
                   </div>
-                  <button onClick={proceedToPayment}>Proceed To Payment</button>
                 </div>
               </div>
               {!loading && paymentData && (
-                <form action="https://rc-epay.esewa.com.np/api/epay/main/v2/form" method="POST">
+                <form action="https://rc-epay.esewa.com.np/api/epay/main/v2/form" method="POST" id="EsewaForm">
                   <input type="hidden" id="amount" name="amount" value={subtotal} required />
                   <input type="hidden" id="tax_amount" name="tax_amount" value={tax} required />
                   <input type="hidden" id="total_amount" name="total_amount" value={totalPrice} required />
                   <input type="hidden" id="transaction_uuid" name="transaction_uuid" value={paymentData.uid} required />
                   <input type="hidden" id="product_code" name="product_code" value="EPAYTEST" required />
+                  <input type="hidden" id="product_code" name="product_code" value="EPAYTEST" required />
                   <input type="hidden" id="product_service_charge" name="product_service_charge" value="0" required />
                   <input type="hidden" id="product_delivery_charge" name="product_delivery_charge" value={shippingCharges} required />
-                  <input type="hidden" id="success_url" name="success_url" value="https://esewa.com.np" required />
+                  {/* changable */}
+                  <input type="hidden" id="success_url" name="success_url" value="http://localhost:3000/process/payment/success" required />
                   <input type="hidden" id="failure_url" name="failure_url" value="http://localhost:3000/process/payment/failure" required />
+                  
                   <input type="hidden" id="signed_field_names" name="signed_field_names" value="total_amount,transaction_uuid,product_code" required />
                   <input type="hidden" id="signature" name="signature" value={paymentData.signature} required />
-                  <input value="Submit" type="submit" />
+                  <input value="Proceed to Payment" type="submit" className='formBtn '/>
                 </form>
               )}
             </div>

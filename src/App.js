@@ -10,15 +10,14 @@ import ForgetPassword from './components/user/ForgetPassword';
 import UpdatePassword from './components/user/UpdatePassword';
 import Profile from './components/user/Profile';
 import { Toaster } from 'react-hot-toast';
-import {useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ProtectedRoute from './components/Route/ProtectedRoute';
-import {loadUser } from './actions/userAction';
+import { loadUser } from './actions/userAction';
 import ResetPassword from './components/user/ResetPassword';
 import Cart from './components/cart/Cart';
 import Shipping from './components/cart/Shipping';
 import ConfirmOrder from './components/cart/ConfirmOrder';
-import axios from "axios";
-import {server} from "./index";
+import { server } from "./index";
 // import Payment from './components/cart/Payment';
 import Product from './components/Product/Product';
 import TestComponents from './components/TestComponents';
@@ -30,22 +29,11 @@ import Failure from './components/cart/Failure';
 
 export default function App() {
   const dispatch = useDispatch();
-  const {isAuthenticated} = useSelector(state=>state.user);
-  const [stripeApiKey,setStripeApikey]= useState("");
+  const { isAuthenticated } = useSelector(state => state.user);
 
-  const getStripeApiKey = async()=>{
-    const {data} = await axios.get(`${server}/stripeApiKey`, {withCredentials: true});
-    setStripeApikey(data.stripeApiKey);
-  }
-
-  useEffect(()=>{
-    if(isAuthenticated){
-      dispatch(loadUser());
-    // console.log('isAuthenticated:',isAuthenticated); //removable
-    getStripeApiKey(); 
-    console.log('stripeApiKey:', stripeApiKey);
-    }
-  },[dispatch])
+  useEffect(() => {
+    dispatch(loadUser());
+  }, [dispatch])
 
   return (
     <Router>
@@ -53,8 +41,8 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/test" element={<TestComponents />} />
-        <Route path="/product" element={<Product/>} />
-        <Route path="/product/:keyword" element={<Product/>} />
+        <Route path="/product" element={<Product />} />
+        <Route path="/product/:keyword" element={<Product />} />
         <Route path="/productDetail/:id" element={<ProductDetail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
@@ -62,19 +50,19 @@ export default function App() {
         <Route path="/password/reset/:token" element={<ResetPassword />} />
         <Route path="/user/updatePassword" element={<ProtectedRoute Component={UpdatePassword} />} />
         <Route path="/user/me" element={<ProtectedRoute Component={Profile} />} />
-        <Route path="/cart" element={<Cart/>} />
-        <Route path="/checkout" element={<Shipping/>}/>
-        <Route path="/order/confirm" element={<ConfirmOrder/>}/>
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/checkout" element={<Shipping />} />
+        <Route path="/order/confirm" element={<ConfirmOrder />} />
         {/* In development */}
         {/* <Route path="/process/payment" element={<Payment/>}/>  */}
-        <Route path="/process/payment/success" element={<Success />}/> 
-        <Route path="/process/payment/failure" element={<Failure />}/> 
+        <Route path="/process/payment/success" element={<Success />} />
+        <Route path="/process/payment/failure" element={<Failure />} />
 
 
         {/* Admin routes */}
-        <Route path="/admin/Products" element={<AdminProduct/>}/> 
-        <Route path="/admin/Customers" element={<AdminUser/>}/> 
-        <Route path="/admin/Orders" element={<AdminOrder/>}/> 
+        <Route path="/admin/Products" element={<AdminProduct />} />
+        <Route path="/admin/Customers" element={<AdminUser />} />
+        <Route path="/admin/Orders" element={<AdminOrder />} />
 
 
       </Routes>

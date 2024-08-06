@@ -4,10 +4,8 @@ import ReusableTable from "./ReusableTable";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from 'react';
 import { createColumnHelper } from '@tanstack/react-table';
-import DeleteIcon from '@mui/icons-material/Delete';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
-import { getAllUsers } from '../../actions/userAction';
 import { getAllOrders } from '../../actions/orderAction';
 
 const AdminUser = () => {
@@ -36,23 +34,23 @@ const AdminUser = () => {
   const columnHelper = createColumnHelper(); //used to create column defination
 
   const columns = [
-    columnHelper.accessor('user', {
-      header: () => <span>User</span>,
+    columnHelper.accessor('Item', {
+      header: () => <span>Item</span>,
       size: "100px",
       // color:"blue",
     }),
-    columnHelper.accessor('_id', {
-      header: () => <span>product</span>,
+    columnHelper.accessor('Item Image', {
+      header: () => <span>Item Image</span>,
       size: "100px",
       // color:"blue",
     }),
     columnHelper.accessor('totalPrice', {
-      header: () => <span>Total Price</span>,
+      header: () => <span>Item qty</span>,
       size: "100px",
       // color:"green",
     }),
     columnHelper.accessor('orderStatus', {
-      header: <span>Order Status</span>,
+      header: <span>Item Status</span>,
       size: "100px",
       color: "red",
     }),
@@ -70,8 +68,6 @@ const AdminUser = () => {
 
       <div className="min-h-screen bg-gray-50/50 w-4/5">
         <div className="p-4 ">
-          <span className='font-serif text-xl text-gray-500 uppercase'>{user.name}'s admin Dashboard -- Customers</span>
-
           {
             loading ? (<div className='text-4xl h-screen w-screen flex justify-center mt-60'>Loading...</div>) :
               (<ReusableTable data={orders.orders} columns={columns} />)

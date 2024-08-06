@@ -13,7 +13,7 @@ import {
     ALL_ORDERS_FAIL,
     // UPDATE_ORDER_REQUEST,
     // UPDATE_ORDER_SUCCESS,
-    // UPDATE_ORDER_FAIL,
+    // UPDATE_ORDER_FAIL, 
     // DELETE_ORDER_REQUEST,
     // DELETE_ORDER_SUCCESS,
     // DELETE_ORDER_FAIL,
@@ -32,7 +32,7 @@ export const newOrderReducer = (state = {}, action) => {
         };
   
       case CREATE_ORDER_SUCCESS:
-        return {
+        return { 
           loading: false,
           order: action.payload,
         };

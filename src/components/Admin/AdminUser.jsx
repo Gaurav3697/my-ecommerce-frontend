@@ -45,11 +45,6 @@ const AdminUser = () => {
       size: "100px",
       // color:"green",
     }),
-    columnHelper.accessor('avatar', {
-      header: <span>Avatar</span>,
-      size: "100px",
-      color: "red",
-    }),
     columnHelper.accessor('role', {
       header: <span>Role</span>,
       size: "150px",
