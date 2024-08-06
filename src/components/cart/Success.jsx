@@ -1,7 +1,58 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
+import { createOrder } from '../../actions/orderAction';
+import toast from 'react-hot-toast';
+import { CLEAR_ERRORS } from '../../constants/orderConstants';
+// import { useNavigate } from 'react-router-dom';
 
 const Success = () => {
+    // const { queryParams } = useParams();
+    // const navigate = useNavigate();
+    const [paymentInfo, setPaymentInfo] = useState(null);
+    // const {isAuthenticated} = useSelector((state)=>state.user)
+    const queryParameters = new URLSearchParams(window.location.search);
+    const queryData = queryParameters.get('data');
+    const{error,success}=useSelector((state)=>state.newOrder)
+    const dispatch = useDispatch();
+
+    const existingData = localStorage.getItem('orderInfo');
+    let Orderdata = existingData ? JSON.parse(existingData) : {};
+
+
+    useEffect(() => {
+        // if(!isAuthenticated){
+        //     navigate('/login')
+        // }
+        if(success){
+            toast.success("Order Placed Successfully");
+        }
+        if (queryData) {
+            // Decode the Base64 string
+            console.log(queryData);
+            const decodedString = atob(queryData);
+            const paymentInfo = JSON.parse(decodedString);
+
+            // Update the state with the payment info
+            setPaymentInfo(paymentInfo);
+            if (paymentInfo.status === "COMPLETE") {
+                Orderdata.payments = [];
+                Orderdata.payments.push(paymentInfo);
+                console.log(Orderdata)
+                dispatch(createOrder(Orderdata));
+            }
+            if(error){
+                console.log(error);
+                toast.error(error);
+                dispatch({type:"CLEAR_ERRORS"})
+            }
+        }
+        else {
+            console.log("No payment info found");
+        }
+    }, [queryData,dispatch]);
+
+
     return (
         <div>
             <div className="bg-gray-100 h-auto mt-32 ">

@@ -1,134 +1,32 @@
-.confirmOrderPage {
-    @apply h-screen bg-[white] grid grid-cols-[6fr_3fr];
-  }
+@media screen and (max-width: 600px) {
   .confirmOrderPage > div:last-child {
-    @apply border-l-[rgba(0,0,0,0.247)] border-l border-solid;
-  }
-  .confirmshippingArea {
-    @apply pb-[0%] p-[5vmax];
-  }
-  .confirmshippingArea > p {
-    font: 400 1.8vmax "Roboto";
-  }
-  .confirmshippingAreaBox,
-  .confirmCartItemsContainer {
-    @apply m-[2vmax];
+    @apply border-l-0 border-t-[rgba(0,0,0,0.247)] border-t border-solid;
   }
   .confirmshippingAreaBox > div {
-    @apply flex mx-0 my-[1vmax];
-  }
-  .confirmshippingAreaBox > div > p {
-    @apply text-[black];
-    font: 400 1vmax "Roboto";
-  }
-  .confirmshippingAreaBox > div > span {
-    @apply text-[#575757] mx-[1vmax] my-0;
-    font: 100 1vmax "Roboto";
-  }
-  .confirmCartItems > p {
-    font: 400 1.8vmax "Roboto";
-  }
-  .confirmCartItems {
-    @apply pt-[2vmax] p-[5vmax];
+    @apply flex mx-0 my-[6vw];
   }
   .confirmCartItemsContainer {
-    @apply max-h-[20vmax] overflow-y-auto;
+    @apply max-h-[50vw];
   }
   .confirmCartItemsContainer > div {
-    @apply flex items-center justify-between mx-0 my-[2vmax];
-    font: 400 1vmax "Roboto";
+    @apply mx-0 my-[4vw];
   }
   .confirmCartItemsContainer > div > img {
-    @apply w-[3vmax];
+    @apply w-[10vw];
   }
   .confirmCartItemsContainer > div > a {
-    @apply text-[#575757] w-3/5 no-underline mx-[2vmax] my-0;
-  }
-  .confirmCartItemsContainer > div > span {
-    @apply text-[#5e5e5e];
-    font: 100 1vmax "Roboto";
+    @apply w-[30%] m-0;
   }
   .orderSummary {
-    @apply p-[7vmax];
+    @apply p-[12vw];
   }
   .orderSummary > p {
-    @apply text-center w-full box-border m-auto p-[1vmax] border-b-[rgba(0,0,0,0.267)] border-b border-solid;
-    font: 400 1.8vmax "Roboto";
-  }
-  .orderSummary > div > div {
-    @apply flex justify-between mx-0 my-[2vmax];
-    font: 300 1vmax "Roboto";
-  }
-  .orderSummary > div > div > span {
-    @apply text-[rgba(0,0,0,0.692)];
+    @apply p-[4vw];
   }
   .orderSummaryTotal {
-    @apply flex justify-between px-0 py-[2vmax] border-t-[rgba(0,0,0,0.363)] border-t border-solid;
-    font: 300 1vmax "Roboto";
+    @apply px-0 py-[5vw];
   }
   .orderSummary > button {
-    @apply bg-[tomato] text-[white] w-full cursor-pointer transition-[0.5s] m-auto p-[1vmax] border-[none] hover:bg-[rgb(192,71,50)];
-    font: 400 1vmax "Roboto";
+    @apply mx-auto my-[4vw] p-[4vw];
   }
-  @media screen and (max-width: 600px) {
-    .confirmOrderPage {
-      @apply grid-cols-[1fr] h-[unset];
-    }
-    .confirmOrderPage > div:last-child {
-      @apply border-l-0 border-t-[rgba(0,0,0,0.247)] border-t border-solid;
-    }
-    .confirmshippingArea > p {
-      font: 400 6vw "Roboto";
-    }
-    .confirmshippingAreaBox > div {
-      @apply flex mx-0 my-[6vw];
-    }
-    .confirmshippingAreaBox > div > p {
-      font: 400 4vw "Roboto";
-    }
-    .confirmshippingAreaBox > div > span {
-      font: 100 4vw "Roboto";
-    }
-    .confirmCartItems > p {
-      font: 400 6vw "Roboto";
-    }
-    .confirmCartItemsContainer {
-      @apply max-h-[50vw];
-    }
-    .confirmCartItemsContainer > div {
-      @apply mx-0 my-[4vw];
-      font: 400 4vw "Roboto";
-    }
-    .confirmCartItemsContainer > div > img {
-      @apply w-[10vw];
-    }
-    .confirmCartItemsContainer > div > a {
-      @apply w-[30%] m-0;
-    }
-    .confirmCartItemsContainer > div > span {
-      font: 100 4vw "Roboto";
-    }
-    .orderSummary {
-      @apply p-[12vw];
-    }
-    .orderSummary > p {
-      @apply p-[4vw];
-      font: 400 6vw "Roboto";
-    }
-    .orderSummary > div > div {
-      font: 300 4vw "Roboto";
-    }
-    .orderSummaryTotal {
-      @apply px-0 py-[5vw];
-      font: 300 4vw "Roboto";
-    }
-    .orderSummary > button {
-      @apply mx-auto my-[4vw] p-[4vw];
-      font: 400 4vw "Roboto";
-    }
-  }
-  
-  .formBtn{
-    @apply bg-[tomato] text-[white] text-sm absolute md:right-36 md:top-[95vh] w-40 cursor-pointer transition-[0.5s] p-[1vmax] border-[none] hover:bg-[rgb(192,71,50)];
-    font: 400 1vmax "Roboto"  ;
-  }
+}
