@@ -87,7 +87,7 @@ const ConfirmOrder = () => {
                   {cartItems && cartItems.map((item) => (
                     <div key={item.product} className='flex items-center justify-between mx-0 my-[2vmax]'>
                       <img src={item.image} alt="Product" className='w-[3vmax]' />
-                      <Link to={`/product/${item.product}`} className='text-[#575757] w-3/5 no-underline mx-[2vmax] my-0'>
+                      <Link to={`/productDetail/${item.product}`} className='text-[#575757] w-3/5 no-underline mx-[2vmax] my-0'>
                         {item.name}
                       </Link>{" "}
                       <span className='text-[#5e5e5e]'>

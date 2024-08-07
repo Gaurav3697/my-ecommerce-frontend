@@ -21,6 +21,15 @@ import {
     PAYMENT_SUCCESS,
     PAYMENT_FAIL,
     CLEAR_ERRORS,
+    ORDER_DETAILS_REQUEST,
+    ORDER_DETAILS_SUCCESS,
+    ORDER_DETAILS_FAIL,
+    UPDATE_ORDER_REQUEST,
+    DELETE_ORDER_REQUEST,
+    UPDATE_ORDER_SUCCESS,
+    DELETE_ORDER_SUCCESS,
+    UPDATE_ORDER_FAIL,
+    DELETE_ORDER_FAIL,
 } from "../constants/orderConstants";
 
 export const newOrderReducer = (state = {}, action) => {
@@ -98,6 +107,73 @@ export const paymentreducer = (state = { paymentData: [] , loading:true }, actio
       };
 
     case PAYMENT_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
+
+    default:
+      return state;
+  }
+};
+
+export const orderDetailreducer = (state = { order: {}, loading:true }, action) => {
+  switch (action.type) {
+    case ORDER_DETAILS_REQUEST:
+      return {
+        loading: true,
+      };
+
+    case ORDER_DETAILS_SUCCESS:
+      return {
+        loading: false,
+        order: action.payload,
+      };
+
+    case ORDER_DETAILS_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
+
+    default:
+      return state;
+  }
+};
+
+export const updateOrderReducer = (state = {}, action) => {
+  switch (action.type) {
+    case UPDATE_ORDER_REQUEST:
+    case DELETE_ORDER_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case UPDATE_ORDER_SUCCESS:
+      return {
+        loading: false,
+        isUpdated: action.payload,
+      };
+
+    case DELETE_ORDER_SUCCESS:
+      return {
+        loading: false,
+        isDeleted: action.payload,
+      };
+
+    case UPDATE_ORDER_FAIL:
+    case DELETE_ORDER_FAIL:
       return {
         loading: false,
         error: action.payload,

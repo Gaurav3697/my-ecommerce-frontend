@@ -151,4 +151,4 @@ export const allUsersReducer = (state = { users: [] , loading:true }, action) =>
   };
   
 
-//reset password reducer
+//admin route to get songle user

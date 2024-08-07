@@ -7,6 +7,7 @@ import CardOverflow from '@mui/joy/CardOverflow';
 import Typography from '@mui/joy/Typography';
 // import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 import { Link } from 'react-router-dom'
+import Rating from '@mui/material/Rating';
 
 
 export default function ProductCard({ product }) {
@@ -46,7 +47,12 @@ export default function ProductCard({ product }) {
         </Typography>
 
         <Typography level="body-sm">
-          {`Rating: ${product.rating} stars (${product.reviews.length} Reviews)`}
+          {/*  */}
+          <Rating
+        name="simple-controlled"
+        value={product.rating}
+        readOnly 
+      /> <br/>{`(${product.reviews.length} Reviews)`}
         </Typography>
         <Link
           to={`/productDetail/${product._id}`}
