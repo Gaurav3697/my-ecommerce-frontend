@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { forgotPassword } from '../../actions/userAction';
 import toast from 'react-hot-toast';
 import { FORGOT_PASSWORD_RESET } from '../../constants/userConstants';
+import Loader from '../Loader';
 
 const ForgetPassword = () => {
     const dispatch = useDispatch();
@@ -29,7 +30,7 @@ const ForgetPassword = () => {
 
     return (
         <>
-            {loading ? (<div className='text-4xl h-screen w-screen flex justify-center mt-60'>Loading...</div>) : (
+            {loading ? (<Loader/>) : (
                 <div className='flex flex-col m-auto relative top-32 w-1/2 border border-gray-400 rounded-2xl'>
                     <span className="m-5 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Forgot password</span>
                     <form onSubmit={handleSubmit}>

@@ -4,6 +4,7 @@ import React, { Fragment } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { clearErrors,register } from '../../actions/userAction';
 import toast from 'react-hot-toast';
+import Loader from '../Loader';
 
 //when i tries to register using image i got error 500 it means there is error in my backend so for now i will just do without image
 //so will learn to add media in cloudinary properly and take time to practice it then i wll do my job
@@ -53,7 +54,7 @@ const Register = () => {
     return (
         <Fragment>
         {
-            loading ? (<div className='text-4xl h-screen w-screen flex justify-center mt-60'>Loading...</div> ):
+            loading ? (<Loader/>):
             <Fragment>
             <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 bg-white h-auto mt-6">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">

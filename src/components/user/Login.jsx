@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { toast } from "react-hot-toast";
 import { clearErrors, login } from '../../actions/userAction';
 import { useNavigate } from "react-router-dom";
+import Loader from '../Loader';
 
 const Login = () => {
     const dispatch = useDispatch();
@@ -39,7 +40,7 @@ const Login = () => {
 
     return (
         <>
-            {loading ? <h1>Loading...</h1> : (
+            {loading ? <Loader/> : (
                 <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 bg-white h-screen">
                     <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Login to your account</h2>

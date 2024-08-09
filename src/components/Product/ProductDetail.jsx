@@ -17,6 +17,7 @@ import {
     Button,
 } from "@mui/material";
 import Rating from '@mui/material/Rating';
+import Loader from '../Loader';
 
 const ProductDetail = () => {
     const dispatch = useDispatch();
@@ -90,7 +91,6 @@ const ProductDetail = () => {
 
     return (
         <Fragment>
-            {/* when there is product detail then only render this to avoid undefine error created  while rendering the component i will try to replace with if(loading) condition fetched from redux*/}
             {productDetails && productDetails.product ? (
                 <Fragment>
                     <div className="flex flex-col gap-6 md:gap-0 md:flex-row  md:items-center mb-32 mt-28 bg-white h-auto">
@@ -193,7 +193,7 @@ const ProductDetail = () => {
                     {/* adding one more dive and making above as container make one more div to show related product or product of same category */}
                 </Fragment>
             ) : (
-                <h1>Loading...</h1>
+                <Loader/>
             )}
         </Fragment>
     )

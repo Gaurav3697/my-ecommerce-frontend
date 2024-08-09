@@ -11,6 +11,7 @@ import ProductCard from '../components/Product/ProductCard';
 import { Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import DemoCarousel from './DemoCarousel';
+import Loader from './Loader';
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -61,7 +62,7 @@ const Home = () => {
 
                 <h2 className="mt-0 text-center flex justify-center text-gray-800 text-2xl">Featured Products</h2>
                 {
-                    loading ? (<div className='text-4xl h-screen w-screen flex justify-center mt-60'>Loading...</div>) :
+                    loading ? ( <Loader/>) :
                         (
                             <div className="flex flex-wrap m-auto w-11/12 gap-5 lg:gap-16 md:gap-8 bottom-5">
                                 {productList.products &&

@@ -10,6 +10,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import toast from 'react-hot-toast';
 import {DELETE_ORDER_RESET} from "../../constants/orderConstants"
+import Loader from '../Loader';
 
 const AdminUser = () => {
   const dispatch = useDispatch();
@@ -96,7 +97,7 @@ const AdminUser = () => {
       <div className="min-h-screen bg-gray-50/50 w-4/5">
         <div className="p-4 ">
           {
-            loading ? (<div className='text-4xl h-screen w-screen flex justify-center mt-60'>Loading...</div>) :
+            loading ? (<Loader/>) :
               (<ReusableTable data={orders.orders} columns={columns} />)
           }
         </div>

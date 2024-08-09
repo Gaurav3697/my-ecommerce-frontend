@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { updatePassword } from '../../actions/userAction';
 import { useNavigate } from 'react-router-dom'
 import { UPDATE_PASSWORD_RESET } from '../../constants/userConstants';
+import Loader from '../Loader';
 
 const UpdatePassword = () => {
     const dispatch = useDispatch();
@@ -50,7 +51,7 @@ const UpdatePassword = () => {
     return (
         <>
         {
-            loading ? (<div className='text-4xl h-screen w-screen flex justify-center mt-60'>Loading...</div>) :
+            loading ? (<Loader/>) :
             <>
             <div className='h-screen w-screen bg-white'>
             <div className='flex flex-col m-auto relative top-32 w-1/2 border border-gray-400 rounded-2xl gap-4 ' >

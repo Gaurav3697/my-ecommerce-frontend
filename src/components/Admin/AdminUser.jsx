@@ -8,6 +8,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { getAllUsers } from '../../actions/userAction';
+import Loader from '../Loader';
 
 const AdminUser = () => {
   const dispatch = useDispatch();
@@ -79,7 +80,7 @@ const AdminUser = () => {
           <span className='font-serif text-xl text-gray-500 uppercase'>{user.name}'s admin Dashboard -- Customers</span>
 
           {
-            loading ? (<div className='text-4xl h-screen w-screen flex justify-center mt-60'>Loading...</div>) :
+            loading ? (<Loader/>) :
               (<ReusableTable data={users.user} columns={columns} />)
           }
         </div>

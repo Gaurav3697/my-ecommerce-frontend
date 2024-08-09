@@ -10,6 +10,7 @@ import Stack from '@mui/material/Stack';
 import { Typography } from '@mui/material'
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
+import Loader from '../Loader'
 
 const categories = [
   "Laptop",
@@ -128,7 +129,7 @@ const Product = () => {
           </div>
           <div className={`${isOpen ? "hidden" : "block"} md:block product_containers h-auto col-span-4 p-2 m-10`}>
             {
-              loading ? (<div className='text-4xl h-screen w-screen flex justify-center mt-60'>Loading...</div>) :
+              loading ? (<Loader/>) :
                 (<div className='flex flex-wrap m-auto gap-4 bottom-3'>
                   {
                     productList.products && productList.products.map((product) => (

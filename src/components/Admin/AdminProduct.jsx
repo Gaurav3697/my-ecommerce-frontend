@@ -20,6 +20,7 @@ import {
 } from "@mui/material";
 import ProductForm from './ProductForm';
 import toast from 'react-hot-toast';
+import Loader from '../Loader';
 
 const DialogBox = ({ DialogBoxToggle, open, Title }) => {
   return (
@@ -171,7 +172,7 @@ const AdminProduct = () => {
 
           {/* React table and pagination for products */}
           {
-            loading ? (<div className='text-4xl h-screen w-screen flex justify-center mt-60'>Loading...</div>) :
+            loading ? (<Loader/>) :
               (
                 <div className="">
                   {productList.products &&
