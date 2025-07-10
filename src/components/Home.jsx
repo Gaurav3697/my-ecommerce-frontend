@@ -3,14 +3,13 @@
 // 2)add cloudinary --> when you make admin to create products
 // 3)add <react-hot-toast>
 // 4)add loader
-import React, { Fragment, useEffect } from 'react'
+import { Fragment, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { getProduct, clearErrors } from '../actions/productAction'
 import { useSelector } from 'react-redux'
 import ProductCard from '../components/Product/ProductCard';
 import { Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
-import DemoCarousel from './DemoCarousel';
 import Loader from './Loader';
 
 const Home = () => {
@@ -26,41 +25,63 @@ const Home = () => {
 
     return (
         <Fragment>
-            <div className="flex flex-col z-10 mb-32 mt-28 gap-10 bg-white overflow-x-hidden">
-                <DemoCarousel/>
+            <div className="flex flex-col z-10 mb-32 gap-10 bg-black overflow-x-hidden">
+                
+                {/* hero image */}
+                <div className="HeroImg">
+                    <img src="./main.jpg" alt="main image" />
+                </div>
 
-                <div className="mt-12 md:mt-0 flex flex-col md:flex-row w-full h-screen">
-                    <div className="h-5/6 w-full md:w-1/2 relative my-auto left-4">
-                        <img
-                            src="/img3.jpg"
-                            alt="smallImage"
-                            className="h-5/6 w-11/12 mx-auto md:m-auto rounded-xl absolute md:left-20"
-                        />
-                        <div className="h-5/6 w-11/12 mx-auto md:m-auto rounded-xl absolute md:left-20 text-white text-xl md:text-3xl bg-gray-900 bg-opacity-50 border border-white">
-                            <div className="w-3/4 h-full flex flex-col justify-center items-center mx-auto space-y-4 tracking-wider p-4 md:p-0">
-                                WE ALSO REPAIRS MOBILES AND COMPUTERS
-                                <Link to={'/product'} className="text-lg underline hover:text-gray-300 cursor-pointer">SEE MORE</Link>
-                            </div>
+                {/* services */}
+                <div className="services w-screen h-auto flex flex-col">
+                    <span className="title text-4xl inter-bold text-white underline flex justify-center ">Services</span>
+                    <div className="servicesicon flex flex-row justify-center w-full gap-32">
+                        <div className="taxBilling flex flex-col w-auto h-auto">
+                            <img src="./tax.png" alt="taxbilling" className='h-36 w-36' />
+                            <span className="tax roboto-mono-regular flex justify-center text-white">Tax Billing</span>
                         </div>
-                    </div>
-                    <div className="h-5/6 w-full md:w-1/2 relative my-auto left-4">
-                        <img
-                            src="/img2.jpg"
-                            alt="smallImage"
-                            className="h-5/6 w-11/12 mx-auto md:m-auto rounded-xl absolute md:right-5"
-                        />
-                        <div className="h-5/6 w-11/12 mx-auto md:m-auto rounded-xl absolute md:right-5 text-white text-xl md:text-3xl bg-black bg-opacity-40 border border-white">
-                            <div className="w-3/4 h-full flex flex-col justify-center items-center mx-auto space-y-4 tracking-wider p-4 md:p-0">
-                                GET AMAZING OFFERS IN<br />
-                                ACCESSORIES OF DIFFERENT CATEGORIES <br />
-                                <Link to={'/product'} className="text-lg underline hover:text-gray-300 cursor-pointer">SEE MORE</Link>
-                            </div>
+
+                        <div className="delivary flex flex-col w-auto h-auto ">
+                            <img src="./delivary.png" alt="taxbilling" className='h-36 w-36'/>
+                            <span className="tax roboto-mono-regular flex justify-center text-white">Free Delivery</span>
                         </div>
+
+                        <div className="warrenty flex flex-col w-auto h-auto">
+                            <img src="./warrenty.png" alt="taxbilling" className='h-36 w-36'/>
+                            <span className="tax roboto-mono-regular flex justify-center text-white">upto 12 months warrenty</span>
+                        </div>
+
+                        <div className="discount flex flex-col w-auto h-auto">
+                            <img src="./discount.png" alt="taxbilling" className='h-36 w-36' />
+                            <span className="tax roboto-mono-regular flex justify-center text-white">Discount upto 25%</span>
+                        </div>
+
                     </div>
                 </div>
 
 
-                <h2 className="mt-0 text-center flex justify-center text-gray-800 text-2xl">Featured Products</h2>
+
+                {/* We also repair mobiles */}
+                <div className="mt-12 md:mt-0 w-full h-screen">
+                    <div className="w-full h-auto">
+                        <img
+                            src="./repair.jpg"
+                            alt="smallImage"
+                            className="h-5/6 w-full mx-auto md:m-auto rounded-xl absolute "
+                        />
+                        <div className="h-5/6 w-full absolute text-white inter-regular text-xl md:text-3xl bg-gray-900 bg-opacity-80 ">
+                            <div className="w-3/4 h-full flex flex-col justify-center items-center mx-auto space-y-4 tracking-wider p-4 md:p-0">
+                                We also Repair Mobile Phones
+                                <Link to={'/product'} className="text-lg underline hover:text-gray-300 cursor-pointer">SEE MORE</Link>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+                {/* products on offer */}
+                    <span className="title text-4xl inter-bold text-white underline flex justify-center ">Products on offer</span>
                 {
                     loading ? ( <Loader/>) :
                         (

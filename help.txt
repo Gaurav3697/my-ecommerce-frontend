@@ -39,3 +39,21 @@ i can decide whether to create of update using function that i will pass to the 
  <input value="Submit" type="submit">
  </form>
 </body>
+
+
+<img
+          src={product.images[0].url}
+          alt=""
+          className='object-contain w-auto h-auto md:h-44 md:w-auto'
+        />
+
+<Link
+  to={`/productDetail/${product._id}`}
+  className='text-md font-bold'
+  color="neutral"
+  textcolor="text.primary"
+  >
+    {product.name}
+</Link>
+
+{product.price}

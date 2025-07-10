@@ -24,12 +24,12 @@ const Header = () => {
   //when user is logged out redirect him directly to login page
   return (
     <Fragment>
-      <header className='text-gray-500 fixed top-0 bg-white w-full h-auto z-20 shadow-md flex flex-col gap-1 md:gap-3'>
-        <div className='container mx-auto flex flex-wrap p-2 md:p-4 items-center justify-between'>
-          <div className='flex items-center mx-1'>
-            <img src="/logo.jpg" alt="logo" className='h-6 md:h-15' />
+<header className='text-white fixed top-0 bg-transparent w-full h-auto z-20 shadow-md'>
+  <div className='flex flex-wrap p-2 md:p-4 items-center justify-between'>
+          <div className='flex items-center'>
+            <span className="logo irish-grover-regular text-4xl">GM</span>
           </div>
-          <nav className='flex-1 flex items-center justify-center space-x-1 md:space-x-4 gap-0.5 md:gap-2 lg:gap-10'>
+          <nav className='mx-20 left flex-1 flex items-center justify-start space-x-1 md:space-x-4 gap-0.5 md:gap-2 lg:gap-10'>
             <Link to={'/'} className='font-semibold text-sm hover:text-gray-900 transition-colors duration-300'>Home</Link>
             <Link to={'/Product'} className='font-semibold text-sm hover:text-gray-900 transition-colors duration-300'>Products</Link>
             {
@@ -38,7 +38,9 @@ const Header = () => {
             }
           </nav>
 
-          <div className='flex-1 hidden md:flex items-center justify-center lg:gap-3 mr-6'>
+
+            {/* search bar */}
+          {/* <div className='flex-1 hidden md:flex items-center justify-center lg:gap-3 mr-6'>
             <input
               onChange={(e) => setKeyword(e.target.value)}
               id="search"
@@ -50,10 +52,10 @@ const Header = () => {
             <span onClick={searchSubmitHandler} className='ml-0 md-ml-3 text-sm md:text-lg cursor-pointer transition-colors duration-300 px-1 md:px-4 py-1 border rounded-2xl'>
               <SearchOutlinedIcon />
             </span>
-          </div>
+          </div> */}
 
 
-          <div className='flex items-center justify-end space-x-3 md:space-x-8 md:mt-0 z-10 right-0 lg:right-6 lg:gap-12'>
+          <div className='right flex items-center justify-end space-x-3 md:space-x-8 md:mt-0 z-10 right-0 lg:pr-10 lg:gap-12'>
             <Link to={'/cart'} className='hover:text-gray-900 text-sm md:text-xl transition-colors duration-300'>
               <ShoppingCartOutlinedIcon />
               <span className='text-sm md:text-lg'>Cart({cartItems.length})</span>
