@@ -25,7 +25,7 @@ const Home = () => {
 
     return (
         <Fragment>
-            <div className="flex flex-col z-10 mb-32 gap-10 bg-black overflow-x-hidden">
+            <div className="flex flex-col z-10 gap-10 bg-black overflow-x-hidden">
                 
                 {/* hero image */}
                 <div className="HeroImg">
@@ -98,7 +98,7 @@ const Home = () => {
                     to={'/product'}
                     className="mx-auto hover:text-gray-900 text-xl hover:cursor-pointer transition-colors duration-300"
                 >
-                    <span className="text-2xl -tracking-tighter text-blue-600 hover:text-blue-800">More Products...</span>
+                    <span className="text-2xl -tracking-tighter text-white hover:text-gray-400">More Products...</span>
                 </Link>
             </div>
         </Fragment>

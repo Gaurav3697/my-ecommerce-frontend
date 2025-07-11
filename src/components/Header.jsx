@@ -30,10 +30,10 @@ const Header = () => {
             <span className="logo irish-grover-regular text-4xl">GM</span>
           </div>
           <nav className='mx-20 left flex-1 flex items-center justify-start space-x-1 md:space-x-4 gap-0.5 md:gap-2 lg:gap-10'>
-            <Link to={'/'} className='font-semibold text-sm hover:text-gray-900 transition-colors duration-300'>Home</Link>
-            <Link to={'/Product'} className='font-semibold text-sm hover:text-gray-900 transition-colors duration-300'>Products</Link>
+            <Link to={'/'} className='font-semibold text-sm hover:text-gray-400 transition-colors duration-300'>Home</Link>
+            <Link to={'/Product'} className='font-semibold text-sm hover:text-gray-400 transition-colors duration-300'>Products</Link>
             {
-              user && user.role === "admin" ? (<Link to={'/admin/Products'} className='font-semibold text-sm hover:text-gray-900 transition-colors duration-300'>Admin</Link>
+              user && user.role === "admin" ? (<Link to={'/admin/Products'} className='font-semibold text-sm hover:text-gray-400 transition-colors duration-300'>Admin</Link>
               ) : (" ")
             }
           </nav>
@@ -56,11 +56,11 @@ const Header = () => {
 
 
           <div className='right flex items-center justify-end space-x-3 md:space-x-8 md:mt-0 z-10 right-0 lg:pr-10 lg:gap-12'>
-            <Link to={'/cart'} className='hover:text-gray-900 text-sm md:text-xl transition-colors duration-300'>
+            <Link to={'/cart'} className='hover:text-gray-400 text-sm md:text-xl transition-colors duration-300'>
               <ShoppingCartOutlinedIcon />
               <span className='text-sm md:text-lg'>Cart({cartItems.length})</span>
             </Link>
-            <Link to={'/login'} className='hover:text-gray-900 text-sm md:text-xl transition-colors duration-300 '>
+            <Link to={'/login'} className='hover:text-gray-400 text-sm md:text-xl transition-colors duration-300 '>
               <AccountCircleOutlinedIcon />
               <span className='text-sm'>{user ? user.name : "Login"}</span>
             </Link>
@@ -73,7 +73,7 @@ const Header = () => {
             name="search"
             type="search"
             placeholder="Search in GElectronics"
-            className="p-2 w-full md:w-auto border-0 py-1.5 text-gray-900 shadow-sm rounded-2xl ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            className="p-2 w-full md:w-auto border-0 py-1.5 text-gray-400 shadow-sm rounded-2xl ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
           />
           <span onClick={searchSubmitHandler} className='ml-0 md-ml-3 text-sm md:text-lg cursor-pointer transition-colors duration-300 px-1 md:px-4 py-1 border rounded-2xl '>
             <SearchOutlinedIcon />

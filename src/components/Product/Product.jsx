@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import React, { Fragment, useEffect } from 'react'
+import { Fragment, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { getProduct } from '../../actions/productAction'
 import { useSelector } from 'react-redux'
@@ -52,35 +52,36 @@ const Product = () => {
 
   return (
     <Fragment>
-      <div className='flex flex-col gap-4 Product_Body mt-24 mb-36 h-auto w-screen bg-white overflow-x-hidden'>
-        <div className="h-auto grid grid-cols-5">
+      <div className='flex flex-col Product_Body pt-12 min-h-screen w-screen bg-black overflow-x-hidden'>
+        <div className="h-auto grid grid-cols-5 relative">
 
           {/* hamburger menu */}
           <button
-              className="flex flex-col h-12 w-12 rounded justify-center items-center group md:hidden"
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              <div
-                className={`${genericHamburgerLine} ${isOpen
-                    ? "rotate-45 translate-y-3 opacity-50 group-hover:opacity-100"
-                    : "opacity-50 group-hover:opacity-100"
-                  }`}
-              />
-              <div
-                className={`${genericHamburgerLine} ${isOpen ? "opacity-0" : "opacity-50 group-hover:opacity-100"
-                  }`}
-              />
-              <div
-                className={`${genericHamburgerLine} ${isOpen
-                    ? "-rotate-45 -translate-y-3 opacity-50 group-hover:opacity-100"
-                    : "opacity-50 group-hover:opacity-100"
-                  }`}
-              />
-            </button>
+            className="flex flex-col h-12 w-12 rounded justify-center items-center group md:hidden"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            <div
+              className={`${genericHamburgerLine} ${isOpen
+                ? "rotate-45 translate-y-3 opacity-50 group-hover:opacity-100"
+                : "opacity-50 group-hover:opacity-100"
+                }`}
+            />
+            <div
+              className={`${genericHamburgerLine} ${isOpen ? "opacity-0" : "opacity-50 group-hover:opacity-100"
+                }`}
+            />
+            <div
+              className={`${genericHamburgerLine} ${isOpen
+                ? "-rotate-45 -translate-y-3 opacity-50 group-hover:opacity-100"
+                : "opacity-50 group-hover:opacity-100"
+                }`}
+            />
+          </button>
 
 
-          <div className= {`${isOpen ? "block" : "hidden"} md:block filters h-screen col-span-1`} >
-            <div className='flex flex-col gap-2 fixed md:left-10'>
+          {/* Sticky filters sidebar (left) */}
+          <div className={`${isOpen ? "block" : "hidden"} md:block col-span-1 h-full`}>
+            <div className='flex flex-col gap-2 md:left-10 sticky top-20 h-auto overflow-y-auto py-4'>
               <center>
                 <Typography>Price</Typography>
                 <Box sx={{ width: 200 }}>
@@ -115,7 +116,7 @@ const Product = () => {
                 <ul className="flex flex-col m-auto w-3/4 p-2 border border-gray-700 mt-2 rounded-lg">
                   {categories.map((category) => (
                     <li
-                      className="text-sm text-black hover:bg-gray-400 px-4 py-1 rounded-xl transition-all cursor-pointer"
+                      className="text-sm text-white hover:bg-gray-400 px-4 py-1 rounded-xl transition-all cursor-pointer"
                       key={category}
                       onClick={() => setCategory(category)}
                     >
@@ -127,9 +128,10 @@ const Product = () => {
             </div>
 
           </div>
-          <div className={`${isOpen ? "hidden" : "block"} md:block product_containers h-auto col-span-4 p-2 m-10`}>
+
+          <div className={`${isOpen ? "hidden" : "block"} md:block col-span-4 md:col-span-4 h-auto overflow-y-auto p-2 m-10`}>
             {
-              loading ? (<Loader/>) :
+              loading ? (<Loader />) :
                 (<div className='flex flex-wrap m-auto gap-4 bottom-3'>
                   {
                     productList.products && productList.products.map((product) => (
@@ -141,6 +143,7 @@ const Product = () => {
 
           </div>
         </div>
+
         {/* you have to also adjust the oagination for filtered product counts */}
         <div className="pagination h-auto flex justify-end items-center m-10">
           {
